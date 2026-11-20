@@ -173,7 +173,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
 
     function renderGuestAuth() {
       if (desktopAuthHost) {
-        desktopAuthHost.innerHTML = `<button class="simple" data-action="login" style="border:none;background:transparent">Masuk</button><button class="btn" data-action="signup">Daftar Sekarang <span class="arrow">${iconHtml("arrow-up-right")}</span></button>`;
+        desktopAuthHost.innerHTML = `<button class="simple" type="button" data-action="help" style="border:none;background:transparent">Bestie Care</button><button class="simple" data-action="login" style="border:none;background:transparent">Masuk</button><button class="btn" data-action="signup">Daftar Sekarang <span class="arrow">${iconHtml("arrow-up-right")}</span></button>`;
       }
       if (mobileAuthHost) {
         mobileAuthHost.innerHTML = `<button data-action="login">Masuk</button><button class="mobile-cta" data-action="signup">Daftar Sekarang ${iconHtml("arrow-up-right")}</button>`;
@@ -193,7 +193,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
       const avatar = isAdmin ? "/admin-avatar.svg" : getMemberAvatarPath(snapshot.avatarStyle);
 
       if (desktopAuthHost) {
-        desktopAuthHost.innerHTML = `<div class="account-profile-wrap landing-account-wrap"><button class="account-profile-trigger" type="button" data-auth-toggle="desktop" aria-expanded="false"><img class="account-profile-photo" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><span class="account-profile-trigger-copy"><strong>${escapeHtml(snapshot.fullName)}</strong><small>${escapeHtml(subLabel)} · ${escapeHtml(pointSummary)}</small></span><span class="account-profile-chevron"></span></button><div class="account-profile-popover landing-account-popover" hidden><div class="account-profile-popover-head"><img class="account-profile-photo account-profile-photo-large" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><div><strong>${escapeHtml(snapshot.fullName)}</strong><span>${escapeHtml(snapshot.email)}</span><small>${iconHtml("sparkles")} ${escapeHtml(subLabel)} · login aktif</small></div></div><div class="account-profile-details landing-account-details"><div><span>${isAdmin ? "Akses" : "Saldo SKINPoint"}</span><strong>${escapeHtml(pointSummary)}</strong></div><div><span>Pintasan cepat</span><strong>${escapeHtml(dashboardLabel)}</strong></div></div><a class="btn landing-account-dashboard" href="${dashboardHref}">Buka ${escapeHtml(dashboardLabel)} ${iconHtml("arrow-up-right")}</a><p class="account-profile-demo-note landing-account-note">${escapeHtml(detailCopy)}</p><button type="button" class="account-profile-logout" data-auth-signout>Keluar dari akun</button></div></div>`;
+        desktopAuthHost.innerHTML = `<button class="simple" type="button" data-action="help" style="border:none;background:transparent">Bestie Care</button><div class="account-profile-wrap landing-account-wrap"><button class="account-profile-trigger" type="button" data-auth-toggle="desktop" aria-expanded="false"><img class="account-profile-photo" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><span class="account-profile-trigger-copy"><strong>${escapeHtml(snapshot.fullName)}</strong><small>${escapeHtml(subLabel)} · ${escapeHtml(pointSummary)}</small></span><span class="account-profile-chevron"></span></button><div class="account-profile-popover landing-account-popover" hidden><div class="account-profile-popover-head"><img class="account-profile-photo account-profile-photo-large" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><div><strong>${escapeHtml(snapshot.fullName)}</strong><span>${escapeHtml(snapshot.email)}</span><small>${iconHtml("sparkles")} ${escapeHtml(subLabel)} · login aktif</small></div></div><div class="account-profile-details landing-account-details"><div><span>${isAdmin ? "Akses" : "Saldo SKINPoint"}</span><strong>${escapeHtml(pointSummary)}</strong></div><div><span>Pintasan cepat</span><strong>${escapeHtml(dashboardLabel)}</strong></div></div><a class="btn landing-account-dashboard" href="${dashboardHref}">Buka ${escapeHtml(dashboardLabel)} ${iconHtml("arrow-up-right")}</a><p class="account-profile-demo-note landing-account-note">${escapeHtml(detailCopy)}</p><button type="button" class="account-profile-logout" data-auth-signout>Keluar dari akun</button></div></div>`;
       }
 
       if (mobileAuthHost) {
@@ -521,14 +521,14 @@ export default function LandingInteractions({ children }: { children: ReactNode 
 
       openModal(`<div class="tag">REQUEST PICKUP ${iconHtml("recycle")}</div>
         <h3 id="modalTitle">Setor empties-mu!</h3>
-        <p>Pilih jumlah kemasan berdasarkan volume, tanggal dan jam pickup, alamat penjemputan, serta nomor WhatsApp aktif.</p>
+        <p>Pickup gratis untuk alamat yang masuk jangkauan layanan RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM). Isi jumlah kemasan, jadwal, alamat, dan nomor WhatsApp aktif. Bestie Care akan membantu memastikan cakupan alamat sebelum penjemputan.</p>
         <form id="pickupForm">
           <div class="pair-inputs">
             <label class="form-field">5–40 ml <small>5 poin/kemasan</small><input type="number" name="small" min="0" max="999" required value="2"></label>
             <label class="form-field">50–100 ml <small>10 poin/kemasan</small><input type="number" name="medium" min="0" max="999" required value="1"></label>
           </div>
           <label class="form-field">200–500 ml <small>15 poin/kemasan</small><input type="number" name="large" min="0" max="999" required value="0"></label>
-          <div id="pickupPoints" class="pickup-preview" aria-live="polite">Estimasi: <strong>20 SKINPoint</strong> <small>· setelah verifikasi admin</small></div>
+          <div id="pickupPoints" class="pickup-preview" aria-live="polite">Estimasi: <strong>20 SKINPoint</strong> <small>· setelah verifikasi petugas</small></div>
           <div class="pair-inputs">
             <label class="form-field">Tanggal pickup<input type="date" name="date" required></label>
             <label class="form-field">Jam pickup<input type="time" name="time" required value="13:00"></label>
@@ -536,7 +536,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
           <label class="form-field">Alamat / lokasi penjemputan<textarea name="location" rows="2" maxlength="300" required placeholder="Misalnya: Area kampus, gedung, titik temu, dan patokan"></textarea></label>
           <label class="form-field">Nomor WhatsApp yang bisa dihubungi<input type="tel" name="phone" minlength="8" maxlength="22" pattern="[0-9+ .()\\-]{8,22}" required placeholder="08xxxxxxxxxx"></label>
           <label class="form-field">Catatan (opsional)<textarea name="note" rows="2" maxlength="300" placeholder="Contoh: jenis bahan, kondisi botol, petunjuk lokasi"></textarea></label>
-          <div class="notice">Estimasi poin bukan saldo final. Poin hanya diberikan untuk kemasan yang lolos verifikasi petugas.</div>
+          <div class="notice">Pickup gratis berlaku untuk lokasi dalam jangkauan operasional RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM). Untuk alamat di luar jangkauan, Bestie Care akan memeriksa kemungkinan layanan. Estimasi poin bukan saldo final dan hanya kemasan yang lolos verifikasi yang memperoleh SKINPoint.</div>
           <button class="btn" type="submit">${supabase ? "Kirim Pengajuan Pickup" : "Siapkan Pesan Pickup"} ${iconHtml("arrow-up-right")}</button>
         </form>`);
 
@@ -560,7 +560,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         const large = getNumber("large");
         const count = small + medium + large;
         const points = small * 5 + medium * 10 + large * 15;
-        output!.innerHTML = `Estimasi: <strong>${points} SKINPoint</strong> <small>· ${count} kemasan, baru aktif setelah admin memverifikasi</small>`;
+        output!.innerHTML = `Estimasi: <strong>${points} SKINPoint</strong> <small>· ${count} kemasan, setelah verifikasi petugas</small>`;
         return { small, medium, large, count, points };
       }
 
@@ -612,11 +612,11 @@ export default function LandingInteractions({ children }: { children: ReactNode 
           const requestCode = savedPickup?.request_code || requestId;
           const memberName = String(authenticatedUser.user_metadata?.full_name ?? authenticatedUser.email ?? "Member RE-SKIN");
           const whatsappMessage = [
-            "Halo Admin RE-SKIN!",
+            "Halo Bestie Care RE-SKIN!",
             "",
             "*PENGAJUAN PICKUP BARU*",
             `Nomor Pengajuan: ${requestCode}`,
-            `Nama: ${memberName}`,
+            `Nama Beauty Bestie: ${memberName}`,
             `Email: ${authenticatedUser.email ?? "-"}`,
             `WhatsApp Member: ${phone}`,
             "",
@@ -632,15 +632,16 @@ export default function LandingInteractions({ children }: { children: ReactNode 
             `Alamat penjemputan: ${location}`,
             ...(note ? [`Catatan member: ${note}`] : []),
             "",
-            "Mohon konfirmasi jadwal dan cakupan area pickup. Terima kasih.",
+            "Pickup gratis berlaku untuk lokasi dalam jangkauan layanan RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM).",
+            "Mohon konfirmasi cakupan alamat dan jadwal pickup. Terima kasih.",
           ].join("\n");
           const whatsappOpened = openAdminWhatsApp(whatsappMessage, whatsappTab);
           openModal(`<div class="tag">PICKUP TERSIMPAN ${iconHtml("check")}</div>
-            <h3 id="modalTitle">Pengajuan berhasil dikirim.</h3>
-            <p>Permintaan pickup sudah tersimpan di database RE-SKIN dan menunggu konfirmasi petugas. ${whatsappOpened ? "WhatsApp Admin juga sudah dibuka dengan rincian pesan. Tekan Kirim di WhatsApp agar admin langsung menerima pemberitahuan." : "Nomor WhatsApp Admin belum dikonfigurasi; pengajuan tetap tersimpan di dashboard admin."}</p>
+            <h3 id="modalTitle">Pengajuan berhasil disimpan.</h3>
+            <p>Permintaan pickup sudah tersimpan di database RE-SKIN dan menunggu konfirmasi Bestie Care. ${whatsappOpened ? "WhatsApp sudah terbuka menuju chat Bestie Care dengan rincian pengajuan pickup yang sudah terisi. Periksa kembali pesan tersebut, lalu tekan Kirim untuk meneruskan pengajuanmu kepada tim Bestie Care." : "Pengajuan tetap tersimpan. Jika WhatsApp tidak terbuka otomatis, hubungi Bestie Care melalui nomor +62 813-8809-289 dan sampaikan nomor pengajuanmu."}</p>
             <div class="pickup-preview"><strong>${count} kemasan · ${points} estimasi SKINPoint</strong><br><small>Saldo poin belum bertambah sampai verifikasi selesai.</small></div>
             <div class="mini-row"><strong>Nomor pengajuan</strong><span>${escapeHtml(requestCode)}</span></div>
-            <div class="notice">Admin akan memeriksa jumlah dan kondisi kemasan. Poin final mengikuti hasil verifikasi.</div>
+            <div class="notice">Petugas RE-SKIN akan memeriksa jumlah dan kondisi kemasan. Poin final mengikuti hasil verifikasi.</div>
             <button class="btn" id="goDashboard">Lihat Dashboard ${iconHtml("arrow-up-right")}</button>`);
           document.getElementById("goDashboard")?.addEventListener("click", () => {
             window.location.assign("/dashboard");
@@ -651,10 +652,10 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         const memberName = demoUser?.name ?? "Pengguna demo";
         const memberEmail = demoUser?.email ?? "";
         const message = [
-          "Halo Admin RE-SKIN!",
+          "Halo Bestie Care RE-SKIN!",
           "",
           "*PENGAJUAN PICKUP DEMO*",
-          `Nama: ${memberName}`,
+          `Nama Beauty Bestie: ${memberName}`,
           `Email: ${memberEmail || "-"}`,
           `WhatsApp Member: ${phone}`,
           "",
@@ -683,10 +684,10 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         const whatsappOpened = openAdminWhatsApp(message, whatsappTab);
         openModal(`<div class="tag">PESAN PICKUP SIAP</div>
           <h3 id="modalTitle">Yay, siap pickup! ${iconHtml("recycle")}</h3>
-          <p>Pengajuanmu masih berstatus <strong>simulasi</strong> dan belum tersimpan di Supabase. ${whatsappOpened ? "WhatsApp Admin sudah dibuka dengan pesan siap kirim. Tekan Kirim di WhatsApp agar admin menerima pengajuan." : copied ? "Nomor WhatsApp Admin belum dikonfigurasi; pesan sudah disalin ke clipboard." : "Nomor WhatsApp Admin belum dikonfigurasi. Isi variabel kontak admin agar pesan bisa dibuka otomatis."}</p>
+          <p>Pengajuanmu masih berstatus <strong>simulasi</strong> dan belum tersimpan di Supabase. ${whatsappOpened ? "WhatsApp Bestie Care sudah dibuka dengan pesan siap kirim. Tekan Kirim di WhatsApp agar tim Bestie Care menerima pengajuan." : copied ? "Nomor WhatsApp Bestie Care belum dikonfigurasi; pesan sudah disalin ke clipboard." : "Nomor WhatsApp Bestie Care belum dikonfigurasi. Periksa pengaturan kontak Bestie Care agar pesan bisa dibuka otomatis."}</p>
           <div class="pickup-preview"><strong>${count} kemasan · ${points} pts</strong><br><small>Perkiraan poin, bukan saldo terverifikasi.</small></div>
           <label class="form-field">Pesan WhatsApp<textarea readonly rows="9" id="pickupText">${escapeHtml(message)}</textarea></label>
-          <div class="notice">Poin aktual hanya diberikan dari kemasan yang dinyatakan diterima admin, dengan perhitungan sesuai kelompok ukuran.</div>
+          <div class="notice">Poin aktual hanya diberikan dari kemasan yang dinyatakan diterima petugas RE-SKIN, dengan perhitungan sesuai kelompok ukuran.</div>
           <button class="btn" id="selectMessage">Pilih Teks Pesan ${iconHtml("arrow-up-right")}</button>
           <button class="btn btn-outline" id="backDash" style="margin-left:9px;box-shadow:none">Lihat Dashboard</button>`);
         document.getElementById("selectMessage")?.addEventListener("click", () => {
@@ -697,11 +698,14 @@ export default function LandingInteractions({ children }: { children: ReactNode 
     }
 
     function reward(name: string, points: string) {
-      openModal(`<div class="tag">RE-SKIN GIVEAWAY ${iconHtml("gift")}</div>
+      const message = `Halo Bestie Care RE-SKIN! Saya ingin bertanya tentang hadiah ${name} dan kebutuhan SKINPoint ${points}. Apakah hadiah ini tersedia?`;
+      const whatsappHref = `https://wa.me/628138809289?text=${encodeURIComponent(message)}`;
+      openModal(`<div class="tag">RE-SKIN REWARDS ${iconHtml("gift")}</div>
         <h3 id="modalTitle">${escapeHtml(name)}</h3>
-        <p>Kategori giveaway ini tercantum pada rentang <strong>${escapeHtml(points)} SKINPoint</strong> dalam dokumen konsep.</p>
-        <div class="notice">Rentang bukan harga pasti untuk setiap hadiah. Stok, produk yang tersedia, dan harga poin final perlu diisi oleh admin sebelum katalog aktif. Klaim hadiah membutuhkan saldo poin dari botol yang lolos verifikasi.</div>
-        <button class="btn" id="rewardLogin">${currentUser ? "Cek Saldo" : "Masuk untuk Cek Saldo"} ${iconHtml("arrow-up-right")}</button>`);
+        <p>Rentang kebutuhan hadiah ini adalah <strong>${escapeHtml(points)} SKINPoint</strong>. Poin final dan ketersediaan mengikuti katalog terbaru.</p>
+        <div class="notice">Pastikan saldo SKINPoint sudah diverifikasi sebelum mengajukan klaim hadiah. Bestie Care siap membantu mengecek stok dan proses penukaran.</div>
+        <button class="btn" id="rewardLogin">${currentUser ? "Cek Saldo" : "Masuk untuk Cek Saldo"} ${iconHtml("arrow-up-right")}</button>
+        <a class="btn btn-outline" href="${whatsappHref}" target="_blank" rel="noopener noreferrer" style="margin-top:12px">Tanya Bestie Care ${iconHtml("arrow-up-right")}</a>`);
       document.getElementById("rewardLogin")?.addEventListener("click", () => login());
     }
 
@@ -712,15 +716,16 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         <div class="mini-row"><strong>5–40 ml</strong><span>5 SKINPoint/kemasan</span></div>
         <div class="mini-row"><strong>50–100 ml</strong><span>10 SKINPoint/kemasan</span></div>
         <div class="mini-row"><strong>200–500 ml</strong><span>15 SKINPoint/kemasan</span></div>
-        <div class="notice">Ukuran lain belum tercantum dalam aturan konsep. Admin akan menghitung jumlah diterima, ditolak, dan alasan penolakan. Hanya kemasan lolos yang menambah saldo.</div>
-        <button class="btn" id="guidePickup">Ajukan Pickup ${iconHtml("arrow-up-right")}</button>`);
+        <div class="notice">Untuk ukuran di luar rentang tersebut, hubungi Bestie Care untuk pengecekan lebih lanjut. SKINPoint hanya diberikan untuk kemasan yang lolos pemeriksaan.</div>
+        <div class="notice">Pickup gratis tersedia untuk alamat dalam jangkauan layanan RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM). Bestie Care akan membantu memastikan cakupan dan jadwal.</div>
+        <button class="btn" id="guidePickup">Ajukan Pickup Gratis ${iconHtml("arrow-up-right")}</button>`);
       document.getElementById("guidePickup")?.addEventListener("click", pickup);
     }
 
     function help() {
       openModal(`<div class="tag">WE ARE HERE FOR YOU ${iconHtml("sparkles")}</div>
         <h3 id="modalTitle">Bestie Care.</h3>
-        <p>Butuh bantuan soal pickup, SKINPoint, atau hadiah? Sapa Bestie Care melalui kanal resmi RE-SKIN.</p>
+        <p>Butuh bantuan soal pickup gratis di area layanan, jadwal penjemputan, SKINPoint, atau hadiah? Sapa Bestie Care melalui kanal resmi RE-SKIN.</p>
         <div class="bestie-modal-contacts">
           <a class="bestie-modal-contact" href="https://wa.me/628138809289" target="_blank" rel="noopener noreferrer"><span class="bestie-contact-icon">${iconHtml("whatsapp")}</span><span><strong>WhatsApp</strong><small>+62 813-8809-289</small></span>${iconHtml("arrow-up-right")}</a>
           <a class="bestie-modal-contact" href="mailto:rskin6075@gmail.com"><span class="bestie-contact-icon">${iconHtml("mail")}</span><span><strong>Email</strong><small>rskin6075@gmail.com</small></span>${iconHtml("arrow-up-right")}</a>

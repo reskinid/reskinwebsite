@@ -31,7 +31,7 @@ export default function MemberRedeemButton({
     if (!supabase) {
       whatsappTab?.close();
       setFeedbackError(true);
-      setFeedback("Koneksi Supabase belum tersedia. Muat ulang halaman atau hubungi admin.");
+      setFeedback("Koneksi Supabase belum tersedia. Muat ulang halaman atau hubungi Bestie Care.");
       return;
     }
 
@@ -49,7 +49,7 @@ export default function MemberRedeemButton({
     const { data: request } = await supabase.from("redemption_requests").select("request_code").eq("id", requestId).maybeSingle();
     const requestCode = request?.request_code || requestId;
     const message = [
-      "Halo Admin RE-SKIN!",
+      "Halo Bestie Care RE-SKIN!",
       "",
       "*PENGAJUAN PENUKARAN HADIAH BARU*",
       `Nomor pengajuan: ${requestCode}`,
@@ -66,17 +66,23 @@ export default function MemberRedeemButton({
     setLoading(false);
     setFeedbackError(false);
     setFeedback(whatsappOpened
-      ? `Pengajuan ${requestCode} tersimpan. WhatsApp Admin dibuka; tekan Kirim agar admin menerima pemberitahuan.`
-      : `Pengajuan ${requestCode} tersimpan. Admin dapat melihatnya melalui dashboard dan notifikasi.`);
+      ? `Pengajuan ${requestCode} tersimpan. WhatsApp Bestie Care dibuka; tekan Kirim agar tim Bestie Care menerima pemberitahuan.`
+      : `Pengajuan ${requestCode} tersimpan. Tim RE-SKIN dapat menindaklanjutinya melalui dashboard dan notifikasi.`);
     router.refresh();
   }
 
   const unavailable = !pointsCost || stock < 1 || balance < pointsCost;
+  const contactMessage = `Halo Bestie Care RE-SKIN! Saya ingin bertanya tentang kebutuhan SKINPoint untuk hadiah ${rewardName}.`;
+  const contactHref = `https://wa.me/628138809289?text=${encodeURIComponent(contactMessage)}`;
   return (
     <div className="member-redeem-action">
-      <button className="btn btn-dark member-redeem-button" type="button" disabled={unavailable || loading} onClick={() => void requestReward()}>
-        {loading ? "Mengirim..." : stock < 1 ? "Stok habis" : !pointsCost ? "Harga belum ditetapkan" : balance < pointsCost ? `Butuh ${(pointsCost - balance).toLocaleString("id-ID")} pts lagi` : <><Icon name="gift" size={15} /> Tukar hadiah</>}
-      </button>
+      {!pointsCost ? (
+        <a className="btn btn-outline member-redeem-button" href={contactHref} target="_blank" rel="noopener noreferrer">Tanya Bestie Care</a>
+      ) : (
+        <button className="btn btn-dark member-redeem-button" type="button" disabled={unavailable || loading} onClick={() => void requestReward()}>
+          {loading ? "Mengirim..." : stock < 1 ? "Stok habis" : balance < pointsCost ? `Butuh ${(pointsCost - balance).toLocaleString("id-ID")} pts lagi` : <><Icon name="gift" size={15} /> Tukar hadiah</>}
+        </button>
+      )}
       {feedback ? <small className={feedbackError ? "member-redeem-feedback is-error" : "member-redeem-feedback"}>{feedback}</small> : null}
     </div>
   );

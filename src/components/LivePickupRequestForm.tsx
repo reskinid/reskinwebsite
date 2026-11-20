@@ -124,7 +124,7 @@ export default function LivePickupRequestForm({ memberName, memberEmail }: Props
     const requestCode = savedPickup?.request_code || String(requestId);
     const displayName = profile.full_name || memberName || user.email || "Beauty Bestie";
     const message = [
-      "Halo Admin RE-SKIN!",
+      "Halo Bestie Care RE-SKIN!",
       "",
       "*PENGAJUAN PICKUP BARU*",
       `Nomor pengajuan: ${requestCode}`,
@@ -144,7 +144,8 @@ export default function LivePickupRequestForm({ memberName, memberEmail }: Props
       `Alamat penjemputan: ${location.trim()}`,
       ...(note.trim() ? [`Catatan member: ${note.trim()}`] : []),
       "",
-      "Mohon konfirmasi jadwal dan cakupan area pickup. Terima kasih.",
+      "Pickup gratis berlaku untuk lokasi dalam jangkauan layanan RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM).",
+      "Mohon konfirmasi cakupan alamat dan jadwal pickup. Terima kasih.",
     ].join("\n");
 
     const whatsappOpened = openAdminWhatsApp(message, whatsappWindow.current);
@@ -160,7 +161,7 @@ export default function LivePickupRequestForm({ memberName, memberEmail }: Props
         <span className="pickup-success-icon"><Icon name="check-circle" size={30} /></span>
         <div className="small-label">PENGAJUAN BERHASIL TERSIMPAN</div>
         <h2>Terima kasih, Beauty Bestie!</h2>
-        <p>Pengajuan pickup kamu sudah masuk ke database RE-SKIN dan menunggu konfirmasi Admin.</p>
+        <p>Pengajuan pickup kamu sudah masuk ke sistem RE-SKIN dan menunggu konfirmasi Bestie Care terkait cakupan alamat serta jadwal penjemputan.</p>
         <div className="pickup-success-code">
           <span>Nomor pengajuan</span>
           <strong>{success.requestCode}</strong>
@@ -171,10 +172,10 @@ export default function LivePickupRequestForm({ memberName, memberEmail }: Props
         </div>
         <div className={success.whatsappOpened ? "dashboard-alert success" : "dashboard-alert"}>
           {success.whatsappOpened
-            ? "WhatsApp Admin sudah dibuka dengan rincian pengajuan. Tekan tombol Kirim di WhatsApp agar Admin langsung menerima pemberitahuan."
-            : "Pengajuan tersimpan. Admin dapat melihatnya melalui dashboard; WhatsApp tidak berhasil dibuka atau nomor Admin belum tersedia."}
+            ? "WhatsApp sudah terbuka menuju chat Bestie Care dengan rincian pengajuan pickup yang sudah terisi. Periksa kembali pesan, lalu tekan Kirim untuk meneruskannya kepada tim Bestie Care."
+            : "Pengajuan sudah tersimpan. Jika WhatsApp tidak terbuka otomatis, hubungi Bestie Care melalui nomor +62 813-8809-289 dan sampaikan nomor pengajuanmu."}
         </div>
-        <p className="pickup-small-note">SKINPoint belum masuk ke saldo. Poin baru diberikan setelah Admin memverifikasi kemasan yang diterima.</p>
+        <p className="pickup-small-note">SKINPoint belum masuk ke saldo. Poin baru diberikan setelah petugas RE-SKIN memverifikasi kemasan yang diterima.</p>
         <div className="pickup-success-actions">
           <Link className="btn btn-dark" href="/dashboard">Lihat dashboard <Icon name="arrow-up-right" size={15} /></Link>
           <button className="btn btn-outline" type="button" onClick={() => { setSuccess(null); setSmall(0); setMedium(0); setLarge(0); setLocation(""); setPhone(""); setNote(""); }}>Buat pengajuan lain</button>
@@ -187,7 +188,7 @@ export default function LivePickupRequestForm({ memberName, memberEmail }: Props
     <form className="live-pickup-form" onSubmit={handleSubmit}>
       <div className="pickup-form-intro">
         <div className="small-label"><Icon name="package-check" size={14} /> RINCIAN KEMASAN</div>
-        <p>Pilih jumlah kemasan berdasarkan kapasitasnya. Admin akan memeriksa kondisi dan jumlah akhir saat pickup.</p>
+        <p>Pilih jumlah kemasan berdasarkan kapasitasnya. Petugas RE-SKIN akan memeriksa kondisi dan jumlah akhir saat pickup.</p>
       </div>
 
       <div className="pickup-quantity-grid">
@@ -231,16 +232,16 @@ export default function LivePickupRequestForm({ memberName, memberEmail }: Props
         <input required type="tel" minLength={8} maxLength={22} pattern="[0-9+ .()\-]{8,22}" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="08xxxxxxxxxx" />
       </label>
       <label className="pickup-input-field">
-        <span>Catatan untuk Admin <small>(opsional)</small></span>
+        <span>Catatan untuk Bestie Care <small>(opsional)</small></span>
         <textarea maxLength={300} rows={2} value={note} onChange={(event) => setNote(event.target.value)} placeholder="Boleh dikosongkan. Isi hanya jika ada informasi tambahan." />
       </label>
 
       {errorMessage ? <div className="dashboard-alert error" role="alert"><Icon name="alert-circle" size={15} /> {errorMessage}</div> : null}
-      <div className="pickup-form-notice"><Icon name="info" size={17} /><span>Estimasi poin bukan saldo final. Poin hanya diberikan untuk kemasan yang lolos verifikasi Admin. Catatan bersifat opsional dan tidak akan diisi otomatis.</span></div>
+      <div className="pickup-form-notice"><Icon name="info" size={17} /><span>Pickup gratis untuk alamat dalam jangkauan operasional RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM). Bestie Care akan membantu memastikan cakupan dan jadwal. Estimasi poin bukan saldo final; SKINPoint hanya diberikan untuk kemasan yang lolos verifikasi. Catatan bersifat opsional.</span></div>
       <button className="btn btn-dark pickup-submit-button" type="submit" disabled={loading}>
         {loading ? "Menyimpan pengajuan..." : <><Icon name="package-check" size={17} /> Kirim Pengajuan Pickup <Icon name="arrow-up-right" size={16} /></>}
       </button>
-      <p className="pickup-submit-caption">Setelah tersimpan, WhatsApp Admin akan dibuka dengan rincian pengajuan. Kamu tetap perlu menekan Kirim di WhatsApp.</p>
+      <p className="pickup-submit-caption">Setelah pengajuan berhasil disimpan, WhatsApp akan terbuka secara otomatis menuju chat Bestie Care dengan rincian pengajuan pickup yang sudah terisi. Periksa kembali pesan tersebut, lalu tekan Kirim untuk meneruskan pengajuanmu kepada tim Bestie Care.</p>
     </form>
   );
 }

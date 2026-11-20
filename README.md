@@ -1,5 +1,8 @@
 # RE-SKIN — Next.js + Supabase starter
 
+> **Versi V28.1 — Public Launch & Pickup WhatsApp Fix**
+> Copywriting publik diselaraskan untuk layanan yang sudah berjalan. Pickup gratis berlaku untuk alamat dalam jangkauan operasional RE-SKIN, termasuk area kampus UTM. Source code, autentikasi, dashboard, dan alur database tetap dipertahankan.
+
 Landing page RE-SKIN dipindahkan ke **Next.js App Router + TypeScript**. Ikon antarmuka menggunakan **Lucide React**, sedangkan logo media sosial menggunakan **Font Awesome 6 Brands** melalui `react-icons/fa6`.
 
 ## Stack
@@ -109,31 +112,13 @@ npm run lint
 ```
 
 
-## Typography update
+## Typography system — V28.5 font preview
 
-The landing page now uses a two-font editorial system:
-- **DM Sans** for body copy, navigation, buttons, cards, and bold headings.
-- **Playfair Display Italic** for selected accent phrases in section headings, giving the page a softer and more feminine editorial contrast.
-
-The hero headline is set in bold DM Sans with **“Selamat!”** highlighted in RE-SKIN coral (`#990300`) and a soft lime underline, following the supplied visual reference. The accent serif is also applied to selected phrases in the quick-start, how-it-works, packaging guide, catalog, pickup area, about, FAQ, and final CTA sections.
-
-Fonts load from Google Fonts in the browser and have system fallbacks if the font service is unavailable. No Next.js build-time font download is required.
-
-After extracting the project, run `npm install` before `npm run dev` so all dependencies listed in `package.json` (including Font Awesome 6 brand and solid icon packages) are installed.
-
-
-## Typography system
-- Main headings and body: Noto Sans.
-- Selected editorial phrases across the landing page: Playfair Display Italic.
-- The global typography override is intentionally placed at the END of `src/app/globals.css`.
-  Keep it last when adding future CSS so older theme overrides do not reset `.display-serif`.
-
-
-## Typography update — Plus Jakarta Sans
-- Main typeface: Plus Jakarta Sans, using weights 400–800.
-- Headline hierarchy is tuned to 700, with the hero at 800 to reduce the overly heavy appearance.
-- Editorial accent remains Playfair Display Italic.
-
+- Main typeface: Plus Jakarta Sans for body copy, navigation, buttons, and main headings.
+- Secondary accent typeface: La Belle Aurore for selected decorative phrases and editorial accents.
+- La Belle Aurore is a handwritten script face with a regular style (not a separate italic cut), so accent elements use its natural script form rather than synthetic italic.
+- The global typography override remains at the END of `src/app/globals.css`; keep it last when adding future CSS.
+- Fonts load from Google Fonts in the browser and have system fallbacks if the font service is unavailable.
 
 ## UI polish update
 - Hero headline uses Plus Jakarta Sans with a lighter 700/800 weight hierarchy.
@@ -273,33 +258,33 @@ The pickup cards now use a full-width member-information area followed by a dedi
 
 ## 8. Notifikasi WhatsApp untuk pengajuan member
 
-Pengajuan pickup dan penukaran hadiah dari Member Demo membuka WhatsApp Admin dengan pesan yang sudah diisi. Form pickup pada landing page juga membuka WhatsApp setelah pengajuan berhasil disimpan melalui Supabase.
+Pengajuan pickup dan penukaran hadiah dari Member Demo membuka chat WhatsApp Bestie Care dengan pesan yang sudah diisi. Form pickup pada landing page juga membuka WhatsApp setelah pengajuan berhasil disimpan melalui Supabase.
 
-### Konfigurasi nomor Admin
+### Konfigurasi nomor WhatsApp Bestie Care
 
 1. Buka `.env.local` di folder `reskin-nextjs`.
-2. Tambahkan nomor WhatsApp Admin:
+2. Tambahkan nomor WhatsApp Bestie Care:
 
 ```env
 NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP=628xxxxxxxxxx
 ```
 
-Gunakan nomor WhatsApp aktif dalam format internasional tanpa tanda `+`, spasi, atau tanda hubung. Nomor lokal `08...` juga dinormalisasi otomatis ke format `62...`.
+Gunakan nomor WhatsApp Bestie Care yang aktif dalam format internasional tanpa tanda `+`, spasi, atau tanda hubung. Nomor lokal `08...` juga dinormalisasi otomatis ke format `62...`. Nama variabel `NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP` dipertahankan untuk kompatibilitas dengan konfigurasi sebelumnya; jika variabel tidak diisi, aplikasi menggunakan nomor publik Bestie Care `628138809289`.
 3. Simpan file dan restart `npm run dev`.
 4. Di Vercel, tambahkan `NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP` pada Project Settings → Environment Variables, lalu redeploy.
 
 ### Alur yang berjalan
 
-- Pickup: sistem menyimpan pengajuan terlebih dahulu (di Demo Mode ke penyimpanan demo lokal; di landing Supabase ke database), lalu membuka chat Admin dengan ID pengajuan, identitas member, nomor kontak, rincian ukuran/jumlah kemasan, tanggal, jam, alamat, dan catatan hanya jika member mengisinya.
-- Penukaran hadiah: Demo Member mencatat permintaan penukaran, lalu membuka chat Admin berisi ID permintaan, nama member, hadiah, jumlah SKINPoint, dan tanggal.
-- Jika nomor Admin belum diisi, pengajuan tetap dicatat sesuai mode yang digunakan dan UI memberi tahu bahwa kontak WhatsApp belum dikonfigurasi.
+- Pickup: sistem menyimpan pengajuan terlebih dahulu (di Demo Mode ke penyimpanan demo lokal; di landing Supabase ke database), lalu membuka chat Bestie Care dengan ID pengajuan, identitas member, nomor kontak, rincian ukuran/jumlah kemasan, tanggal, jam, alamat, dan catatan hanya jika member mengisinya.
+- Penukaran hadiah: Demo Member mencatat permintaan penukaran, lalu membuka chat Bestie Care berisi ID permintaan, nama member, hadiah, jumlah SKINPoint, dan tanggal.
+- Jika variabel nomor WhatsApp tidak diisi, aplikasi menggunakan nomor publik Bestie Care `628138809289` sebagai fallback agar chat tetap dapat dibuka.
 
-**Batasan WhatsApp:** website tidak dapat menekan tombol Kirim secara otomatis. WhatsApp dibuka ke chat Admin dengan teks siap kirim; member tetap menekan **Kirim**. Ini adalah perilaku click-to-chat WhatsApp dan bukan integrasi WhatsApp Business API.
+**Batasan WhatsApp:** website tidak dapat menekan tombol Kirim secara otomatis. WhatsApp dibuka ke chat Bestie Care dengan teks siap kirim; Beauty Bestie tetap perlu memeriksa pesan dan menekan **Kirim**. Ini adalah perilaku click-to-chat WhatsApp dan bukan integrasi WhatsApp Business API.
 
 
-## WhatsApp Admin number configured (V9)
+## WhatsApp Bestie Care number configured (V9)
 
-The project package includes a ready-to-use `.env.local` for Demo Mode with the Admin WhatsApp number supplied by the project owner: `+62 813-8809-289` (normalized to `628138809289` for WhatsApp click-to-chat). The same value is present in `.env.local.example`.
+The source package includes `.env.local.example` with the published Bestie Care WhatsApp number: `+62 813-8809-289` (normalized to `628138809289` for WhatsApp click-to-chat). For security, `.env.local` is not included in the ZIP. Keep your existing local `.env.local`; the source also uses `628138809289` as a fallback if the environment variable is empty.
 
 For Vercel, add this Environment Variable manually:
 
@@ -357,7 +342,7 @@ See `supabase/SETUP-SUPABASE.md` and `LIVE-SUPABASE-QUICKSTART.md` for the setup
 
 ## Perbaikan V14: pengajuan pickup dari Member Area
 
-Tombol **Ajukan Pickup** pada dashboard member sekarang membuka halaman khusus `/dashboard/pickup`, bukan kembali ke landing page. Formulir menyimpan pengajuan melalui RPC `submit_pickup_request`, mengisi catatan hanya jika member mengetiknya, menampilkan nomor pengajuan, dan membuka WhatsApp Admin dengan ringkasan untuk dikirim manual. Tidak ada perubahan SQL/migrasi untuk perbaikan navigasi ini.
+Tombol **Ajukan Pickup** pada dashboard member sekarang membuka halaman khusus `/dashboard/pickup`, bukan kembali ke landing page. Formulir menyimpan pengajuan melalui RPC `submit_pickup_request`, mengisi catatan hanya jika member mengetiknya, menampilkan nomor pengajuan, dan membuka WhatsApp Bestie Care dengan ringkasan untuk dikirim manual. Tidak ada perubahan SQL/migrasi untuk perbaikan navigasi ini.
 
 
 ## Notification UX — V15
@@ -381,3 +366,12 @@ Pemberitahuan penggunaan data tersedia di `src/app/kebijakan-privasi/page.tsx` d
 The landing page reads three aggregate counters from `public.landing_stats`: verified packages from completed pickups, member profiles, and gross approved earned SKINPoint. Database triggers recalculate the aggregate row when profiles, pickup requests, or point transactions change. The aggregate-only row is readable by `anon` and `authenticated`; source tables remain protected by their existing RLS policies. Supabase Realtime pushes updates to the landing page, with a 30-second refresh as a fallback.
 
 For an existing Supabase project, run `supabase/migrations/20261120_public_landing_stats.sql` once in SQL Editor. For a new project, the same table and trigger setup is included in `supabase/schema.sql`.
+
+
+## V28.3 — Member pickup logo
+
+Header halaman pengajuan pickup sekarang menggunakan `/reskin-logo-black.png`, sama dengan header dashboard Member dan Admin. Badge MEMBER, notifikasi, navigasi, dan menu profil tetap dipertahankan.
+
+## Update V28.4
+
+Perbaikan kontras teks dan ikon pada tombol outline ketika di-hover. Lihat `RE-SKIN-V28.4-CHANGELOG.md`.

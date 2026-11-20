@@ -200,7 +200,7 @@ export default async function DashboardPage({
               <span><Icon name="shield-check" size={14} /> Akun terhubung</span>
             </div>
             <div className="member-welcome-actions">
-              <Link className="btn btn-dark" href="/dashboard/pickup"><Icon name="package-check" size={15} /> Ajukan Pickup <Icon name="arrow-up-right" size={15} /></Link>
+              <Link className="btn btn-dark" href="/dashboard/pickup"><Icon name="package-check" size={15} /> Ajukan Pickup Gratis <Icon name="arrow-up-right" size={15} /></Link>
               <Link className="btn btn-outline" href="#reward-corner">Lihat hadiah <Icon name="gift" size={15} /></Link>
             </div>
           </div>
@@ -281,7 +281,7 @@ export default async function DashboardPage({
                 ))}
               </div>
             ) : (
-              <div className="dashboard-empty">Belum ada transaksi SKINPoint. Poin akan muncul setelah kemasan diverifikasi admin.</div>
+              <div className="dashboard-empty">Belum ada transaksi SKINPoint. Poin akan muncul setelah kemasan diverifikasi petugas RE-SKIN.</div>
             )}
             <div className="member-account-note"><Icon name="check-circle" size={15} /> Akun terhubung dengan {user.email}</div>
           </section>
@@ -303,7 +303,7 @@ export default async function DashboardPage({
                   <div className="member-reward-visual"><Icon name={rewardIcon(reward.category)} size={34} /></div>
                   <div className="member-reward-copy"><span>{reward.category}</span><h3>{reward.name}</h3><p>{reward.description}</p></div>
                   <div className="member-reward-price">
-                    <strong>{reward.points_cost ? reward.points_cost.toLocaleString("id-ID") : "Belum ditetapkan"} <small>{reward.points_cost ? "pts" : ""}</small></strong>
+                    <strong>{reward.points_cost ? reward.points_cost.toLocaleString("id-ID") : "Hubungi Bestie Care"} <small>{reward.points_cost ? "pts" : ""}</small></strong>
                     <span>{reward.stock > 0 ? `Stok tersedia: ${reward.stock}` : "Stok belum tersedia"}</span>
                   </div>
                   <MemberRedeemButton
@@ -320,10 +320,10 @@ export default async function DashboardPage({
             </div>
           ) : (
             <div className="dashboard-empty">
-              Katalog hadiah belum tersedia. Admin sedang menyiapkan harga poin dan stok sebelum hadiah dapat ditukarkan.
+              Belum ada hadiah yang dapat ditukarkan saat ini. Hubungi Bestie Care untuk informasi katalog dan ketersediaan hadiah terbaru.
             </div>
           )}
-          <p className="member-reward-note">SKINPoint akan ditahan saat pengajuan penukaran dikirim. Jika admin menolak, poin dikembalikan ke saldo secara otomatis.</p>
+          <p className="member-reward-note">SKINPoint akan ditahan saat pengajuan penukaran dikirim. Jika pengajuan ditolak, poin dikembalikan ke saldo secara otomatis.</p>
         </section>
 
         <section className="dashboard-card member-redemption-section">
@@ -341,7 +341,7 @@ export default async function DashboardPage({
                   <span className={`status-pill ${item.status === "received" ? "status-completed" : item.status === "rejected" ? "status-cancelled" : item.status === "pending" ? "status-pending" : "status-confirmed"}`}>
                     {redemptionStatusLabels[item.status] ?? item.status}
                   </span>
-                  {item.status === "approved" ? <p className="member-redemption-guidance">Permintaan disetujui. Admin sedang menyiapkan hadiah. Detail pengambilan atau pengiriman akan muncul di sini.</p> : null}
+                  {item.status === "approved" ? <p className="member-redemption-guidance">Permintaan disetujui. Tim RE-SKIN sedang menyiapkan hadiah. Detail pengambilan atau pengiriman akan muncul di sini.</p> : null}
                   {item.status === "rejected" ? <p className="member-redemption-guidance">{item.admin_message ?? "Penukaran belum dapat diproses. Poin telah dikembalikan ke saldo."}</p> : null}
                   {(item.status === "ready" || item.status === "shipped") ? (
                     <div className="member-redemption-fulfillment">

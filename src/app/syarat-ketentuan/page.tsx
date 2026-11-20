@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Syarat & Ketentuan | RE-SKIN",
-  description: "Ketentuan penggunaan layanan pickup, SKINPoint, dan penukaran hadiah RE-SKIN.",
+  description: "Ketentuan layanan pickup gratis di area jangkauan RE-SKIN, SKINPoint, dan penukaran hadiah.",
 };
 
 export default function TermsPage() {
@@ -14,7 +14,7 @@ export default function TermsPage() {
         <p className="privacy-page-lead">Berlaku sejak 20 November 2026. Dengan membuat akun atau menggunakan layanan RE-SKIN, Beauty Bestie dianggap telah membaca dan memahami ketentuan berikut.</p>
 
         <h2>1. Tentang layanan RE-SKIN</h2>
-        <p>RE-SKIN merupakan platform pengumpulan kemasan kosong skincare dan makeup berbahan kaca atau plastik. Anggota dapat mengajukan pickup, menunggu pemeriksaan kemasan oleh admin, memperoleh SKINPoint dari kemasan yang diterima, dan mengajukan penukaran poin dengan hadiah yang tersedia di katalog.</p>
+        <p>RE-SKIN merupakan platform pengumpulan kemasan kosong skincare dan makeup berbahan kaca atau plastik. Anggota dapat mengajukan pickup, menunggu pemeriksaan kemasan oleh petugas RE-SKIN, memperoleh SKINPoint dari kemasan yang diterima, dan mengajukan penukaran poin dengan hadiah yang tersedia di katalog.</p>
 
         <h2>2. Akun anggota</h2>
         <ul>
@@ -26,22 +26,24 @@ export default function TermsPage() {
 
         <h2>3. Pengajuan pickup</h2>
         <ul>
+          <li>Penjemputan diberikan tanpa biaya untuk alamat yang masuk jangkauan operasional RE-SKIN, termasuk area kampus Universitas Trunodjoyo Madura (UTM). Lokasi operasional RE-SKIN berada di Telang, Kamal, Kab. Bangkalan.</li>
+          <li>Untuk alamat di luar area yang biasa dijangkau, Bestie Care akan membantu memeriksa kemungkinan layanan sebelum jadwal disepakati.</li>
           <li>Anggota mengisi jumlah kemasan, tanggal dan waktu yang diinginkan, alamat penjemputan, serta nomor WhatsApp yang dapat dihubungi.</li>
-          <li>Pengajuan yang terkirim belum berarti jadwal pickup telah disetujui. Admin akan memeriksa cakupan area dan mengonfirmasi jadwal melalui kanal komunikasi yang tersedia.</li>
+          <li>Pengajuan yang terkirim belum berarti jadwal pickup telah disetujui. Bestie Care akan membantu memastikan cakupan area dan mengonfirmasi jadwal melalui WhatsApp.</li>
           <li>Anggota diminta memastikan alamat dan nomor kontak benar serta dapat dihubungi pada jadwal yang telah dikonfirmasi.</li>
-          <li>Jika jadwal atau area belum dapat dilayani, admin akan menghubungi anggota untuk tindak lanjut atau perubahan jadwal.</li>
+          <li>Jika jadwal atau area belum dapat dilayani, tim RE-SKIN akan menghubungi anggota untuk tindak lanjut atau perubahan jadwal.</li>
         </ul>
 
         <h2>4. Ketentuan kemasan dan verifikasi</h2>
         <ul>
           <li>Kemasan yang diajukan harus kosong, dibersihkan, dan aman untuk ditangani.</li>
           <li>RE-SKIN menerima kategori kemasan kaca atau plastik sesuai panduan kemasan yang ditampilkan pada website.</li>
-          <li>Admin memeriksa kemasan fisik dan mencatat jumlah yang diterima. Jumlah yang diajukan anggota dapat berbeda dari jumlah yang lolos verifikasi.</li>
+          <li>Petugas RE-SKIN memeriksa kemasan fisik dan mencatat jumlah yang diterima. Jumlah yang diajukan anggota dapat berbeda dari jumlah yang lolos verifikasi.</li>
           <li>Kemasan yang masih berisi produk, kotor, rusak sehingga tidak aman ditangani, atau tidak sesuai panduan dapat ditolak.</li>
         </ul>
 
         <h2>5. Perhitungan dan penggunaan SKINPoint</h2>
-        <p>SKINPoint diberikan setelah admin menyelesaikan verifikasi. Pengajuan pickup atau estimasi poin sebelum verifikasi belum menjadi saldo yang dapat digunakan.</p>
+        <p>SKINPoint diberikan setelah petugas RE-SKIN menyelesaikan verifikasi. Pengajuan pickup atau estimasi poin sebelum verifikasi belum menjadi saldo yang dapat digunakan.</p>
         <ul>
           <li>Kemasan ukuran 5–40 ml: 5 SKINPoint per kemasan yang lolos verifikasi.</li>
           <li>Kemasan ukuran 50–100 ml: 10 SKINPoint per kemasan yang lolos verifikasi.</li>
@@ -52,14 +54,14 @@ export default function TermsPage() {
         <h2>6. Katalog dan penukaran hadiah</h2>
         <ul>
           <li>Hadiah yang dapat ditukar, biaya SKINPoint, dan stok mengikuti informasi pada katalog saat pengajuan dilakukan.</li>
-          <li>Pengajuan penukaran perlu ditinjau dan disetujui admin. Pengajuan belum berarti hadiah sudah diserahkan.</li>
-          <li>Admin akan memperbarui status dan informasi pemenuhan hadiah melalui Member Area atau kanal komunikasi yang tersedia.</li>
-          <li>Anggota perlu mengikuti instruksi pengambilan atau pengiriman yang dikonfirmasi admin dan memberikan konfirmasi penerimaan melalui fitur yang tersedia.</li>
-          <li>Jika stok atau hadiah tidak dapat dipenuhi, admin akan menghubungi anggota dan memperbarui status pengajuan sesuai proses yang berlaku.</li>
+          <li>Pengajuan penukaran perlu ditinjau dan disetujui tim RE-SKIN. Pengajuan belum berarti hadiah sudah diserahkan.</li>
+          <li>Tim RE-SKIN akan memperbarui status dan informasi pemenuhan hadiah melalui Member Area atau kanal komunikasi yang tersedia.</li>
+          <li>Anggota perlu mengikuti instruksi pengambilan atau pengiriman yang dikonfirmasi tim RE-SKIN dan memberikan konfirmasi penerimaan melalui fitur yang tersedia.</li>
+          <li>Jika stok atau hadiah tidak dapat dipenuhi, tim RE-SKIN akan menghubungi anggota dan memperbarui status pengajuan sesuai proses yang berlaku.</li>
         </ul>
 
         <h2>7. Pembatalan dan peninjauan</h2>
-        <p>Pengajuan pickup, penukaran hadiah, atau permintaan lain dapat ditinjau admin sesuai status dan proses yang sedang berjalan. Jika ada informasi yang tidak sesuai, admin dapat meminta klarifikasi atau memperbarui status pengajuan. Perubahan saldo poin mengikuti catatan transaksi yang tercantum pada akun.</p>
+        <p>Pengajuan pickup, penukaran hadiah, atau permintaan lain dapat ditinjau tim RE-SKIN sesuai status dan proses yang sedang berjalan. Jika ada informasi yang tidak sesuai, tim RE-SKIN dapat meminta klarifikasi atau memperbarui status pengajuan. Perubahan saldo poin mengikuti catatan transaksi yang tercantum pada akun.</p>
 
         <h2>8. Penggunaan yang wajar</h2>
         <p>Anggota tidak diperkenankan memberikan informasi palsu, mengajukan kemasan yang sama berulang kali, memanipulasi jumlah kemasan, atau mencoba mengakses akun dan data pengguna lain. Pengajuan yang terindikasi tidak wajar dapat ditahan untuk pemeriksaan lebih lanjut.</p>

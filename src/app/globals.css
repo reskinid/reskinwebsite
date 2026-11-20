@@ -1,6 +1,6 @@
 
 
-:root{--font-sans:'Plus Jakarta Sans',Arial,sans-serif;--font-accent:'Playfair Display',Georgia,serif;--ink:#130B45;--softink:#625D81;--paper:#FFF8D1;--lime:#FFFEA3;--violet:#E4ABFF;--pink:#FFDDEE;--coral:#990300;--cream:#fffef7;--line:#130B45;--muted:#f6f1dd;--shadow:7px 7px 0 var(--ink)}
+:root{--font-sans:'Plus Jakarta Sans',Arial,sans-serif;--font-accent:'Lora',Georgia,serif;--ink:#130B45;--softink:#625D81;--paper:#FFF8D1;--lime:#FFFEA3;--violet:#E4ABFF;--pink:#FFDDEE;--coral:#990300;--cream:#fffef7;--line:#130B45;--muted:#f6f1dd;--shadow:7px 7px 0 var(--ink)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:var(--paper);color:var(--ink);font:500 15px/1.6 var(--font-sans);overflow-x:hidden}button,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--violet);outline-offset:4px}img,svg{max-width:100%}h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4,.display{font-family:var(--font-sans);font-weight:800;letter-spacing:-.055em;line-height:1.04}h2{font-size:clamp(38px,4.8vw,72px)}.wrap{width:min(1240px,calc(100% - 80px));margin:auto}.small-label{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.muted{color:var(--softink)}.display-serif{font-family:var(--font-accent);font-style:italic;font-weight:600;letter-spacing:-.055em;line-height:.98}.pill{border:1.5px solid var(--ink);border-radius:99px;padding:9px 16px;font-size:12px;font-weight:800;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}.btn{border:2px solid var(--ink);border-radius:4px;min-height:49px;padding:12px 22px;display:inline-flex;gap:12px;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:-.01em;transition:transform .2s,box-shadow .2s;background:var(--lime);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}.btn-outline{background:transparent;box-shadow:none}.btn-outline:hover{box-shadow:4px 4px 0 var(--ink)}.btn-dark{background:var(--ink);color:white;box-shadow:4px 4px 0 var(--violet);border-color:var(--ink)}.btn-white{background:white}.arrow{font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1}section{scroll-margin-top:88px}.section-pad{padding:108px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:45px}.section-heading p{max-width:380px}.tag{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}.tag:before{content:'';width:10px;height:10px;border-radius:50%;background:var(--violet);border:1.5px solid var(--ink)}.dot-grid{background-image:radial-gradient(#29253b35 1px,transparent 1px);background-size:17px 17px}
 /* Header is a clean editorial line; intentionally not a floating SaaS navbar */
 .header{background:var(--paper);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:60}.nav{min-height:81px;display:flex;align-items:center;justify-content:space-between;gap:26px}.brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:800;font-size:25px;letter-spacing:-.085em;white-space:nowrap}.brand-mark{width:35px;height:35px;background:var(--violet);border:2px solid var(--ink);border-radius:50% 50% 5px 50%;display:grid;place-items:center;transform:rotate(-12deg);font-size:23px;line-height:1}.nav-links{display:flex;gap:23px;align-items:center;font-size:12px;font-weight:800}.nav-links a:hover{color:#6657d7}.nav-actions{display:flex;gap:15px;align-items:center}.nav-actions .simple{font-weight:800;font-size:12px;white-space:nowrap}.nav-actions .btn{min-height:39px;padding:8px 16px;font-size:12px;box-shadow:3px 3px 0 var(--ink)}.hamburger{display:none;background:transparent;border:2px solid var(--ink);width:42px;height:42px;border-radius:3px;font-size:23px;line-height:1}.mobile-nav{display:none}
@@ -659,7 +659,7 @@ button .icon-inline,.btn .icon-inline{width:1.05em;height:1.05em;fill:currentCol
 .social-icon{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.16em;flex:0 0 auto;fill:currentColor;stroke:none}
 .footer-cols button{display:flex;align-items:center;gap:9px}
 
-/* RE-SKIN typography refresh: Plus Jakarta Sans + Playfair Display */
+/* RE-SKIN typography refresh: Plus Jakarta Sans + Lora Italic */
 .hero h1 .mark { display:inline-block; }
 @media(max-width:540px){
   .hero h1 .mark:after{height:8px;bottom:0}
@@ -670,12 +670,13 @@ button .icon-inline,.btn .icon-inline{width:1.05em;height:1.05em;fill:currentCol
 /* ==========================================================================
    RE-SKIN TYPOGRAPHY FIX — GLOBAL SECTION ACCENTS
    Main voice: Plus Jakarta Sans (clean, confident, highly readable)
-   Editorial accent: Playfair Display Italic (feminine, expressive contrast)
+   Editorial accent: Lora Italic (soft, elegant, readable serif)
    Keep this block at the END of the stylesheet to win against legacy rules.
    ========================================================================== */
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-  --font-accent: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-accent: 'Lora', Georgia, serif;
+  --font-serif: 'Lora', Georgia, serif;
 }
 html, body, button, input, textarea, select {
   font-family: var(--font-sans) !important;
@@ -688,9 +689,9 @@ h1, h2, h3, h4, .display {
 .cta-inner h2 em {
   font-family: var(--font-accent) !important;
   font-style: italic !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 .display-serif {
   display: inline-block;
@@ -2182,7 +2183,7 @@ main,
 .pickup-page-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:34px 0 22px;padding:clamp(22px,4vw,38px);border:1px solid #130b4512;border-radius:28px 28px 28px 8px;background:linear-gradient(112deg,#fff8d6 0%,#fff 48%,#e4abff55 100%);box-shadow:0 18px 42px #130b450b}
 .pickup-page-heading>div:first-child{max-width:760px}
 .pickup-page-heading .dashboard-title{margin:12px 0 8px;font-size:clamp(34px,5vw,58px);line-height:1.04;letter-spacing:-.065em}
-.pickup-page-heading .dashboard-title span{color:#a90000;font-family:var(--font-serif,Georgia,serif);font-style:italic;font-weight:600}
+.pickup-page-heading .dashboard-title span{color:#a90000;font-family:var(--font-serif,cursive);font-style:normal;font-weight:400}
 .pickup-page-heading .dashboard-subtitle{max-width:680px;margin:0;line-height:1.75}
 .pickup-heading-art{display:flex;align-items:center;justify-content:center;gap:10px;flex:0 0 170px;min-height:140px;border-radius:48% 52% 44% 56%;background:#d3fccc;color:#130b45;transform:rotate(5deg)}
 .pickup-heading-art span{font-size:10px;font-weight:900;line-height:1.35;letter-spacing:.08em}
@@ -2693,3 +2694,19 @@ main,
 .bestie-modal-address:hover{border-color:#130b4517;background:#fffdf8}
 @media(max-width:1120px){.footer-layout{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.footer-layout{grid-template-columns:repeat(2,minmax(0,1fr))}.bestie-care{grid-column:1/-1}.footer-cols .bestie-contact-item{margin-bottom:11px}.bestie-care-intro{font-size:11px}.bestie-modal-contacts{gap:7px}.bestie-modal-contact{padding:10px}}
+
+/* V28.4 — button hover contrast consistency */
+
+/*
+ * Outline buttons use a light surface and dark text at rest. Their shared
+ * hover treatment darkens the surface, so switch both label and inherited
+ * icon color to white for consistent contrast across landing, member, admin,
+ * live, and demo interfaces.
+ */
+.btn-outline:hover {
+  color: #ffffff !important;
+}
+.btn-outline:hover .icon-inline,
+.btn-outline:hover .icon-brand {
+  color: #ffffff !important;
+}

@@ -2,11 +2,11 @@
 
 /**
  * WhatsApp click-to-chat helper.
- * NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP must contain the public admin number.
- * Accepts Indonesian local 08... or international +62... formats.
+ * NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP (legacy variable name) contains the public Bestie Care number.
+ * Falls back to the published Bestie Care contact and accepts Indonesian local 08... or international +62... formats.
  */
 export function getAdminWhatsAppNumber() {
-  const raw = process.env.NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP ?? "";
+  const raw = process.env.NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP?.trim() || "628138809289";
   const digits = raw.replace(/\D/g, "");
   if (!digits) return "";
   if (digits.startsWith("0")) return `62${digits.slice(1)}`;

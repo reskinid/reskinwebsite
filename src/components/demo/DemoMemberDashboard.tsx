@@ -266,11 +266,11 @@ export default function DemoMemberDashboard() {
     };
     publishDemoEvent({ type: "pickup-created", pickup });
     const pickupMessage = [
-      "Halo Admin RE-SKIN!",
+      "Halo Bestie Care RE-SKIN!",
       "",
       "*PENGAJUAN PICKUP BARU*",
       `ID Pengajuan: ${id}`,
-      "Nama: Ayu Putri",
+      "Nama Beauty Bestie: Ayu Putri",
       "Email: ayu.putri@reskin.demo",
       `WhatsApp Member: ${phone}`,
       "",
@@ -293,8 +293,8 @@ export default function DemoMemberDashboard() {
     setFilter("all");
     setNotice(
       whatsappOpened
-        ? `Pengajuan ${id} tersimpan di Demo. WhatsApp Admin dibuka dengan rincian siap kirim. Tekan Kirim di WhatsApp agar admin menerima pesan.`
-        : `Pengajuan ${id} tersimpan di Demo, tetapi nomor WhatsApp Admin belum dikonfigurasi. Isi NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP agar pesan bisa dibuka otomatis.`,
+        ? `Pengajuan ${id} tersimpan di Demo. WhatsApp Bestie Care dibuka dengan rincian siap kirim. Tekan Kirim di WhatsApp agar tim Bestie Care menerima pesan.`
+        : `Pengajuan ${id} tersimpan di Demo, tetapi nomor WhatsApp Bestie Care belum dikonfigurasi. Isi NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP agar pesan bisa dibuka otomatis.`,
     );
     setShowNotice(true);
   }
@@ -316,11 +316,11 @@ export default function DemoMemberDashboard() {
     };
     publishDemoEvent({ type: "redemption-requested", redemption });
     const rewardMessage = [
-      "Halo Admin RE-SKIN!",
+      "Halo Bestie Care RE-SKIN!",
       "",
       "*PENGAJUAN PENUKARAN HADIAH BARU*",
       `ID Pengajuan: ${redemption.id}`,
-      "Nama Member: Ayu Putri",
+      "Nama Beauty Bestie: Ayu Putri",
       "Email: ayu.putri@reskin.demo",
       `Hadiah yang dipilih: ${reward.name}`,
       `SKINPoint: ${reward.points.toLocaleString("id-ID")} pts`,
@@ -331,8 +331,8 @@ export default function DemoMemberDashboard() {
     const whatsappOpened = openAdminWhatsApp(rewardMessage);
     setNotice(
       whatsappOpened
-        ? `Permintaan ${reward.name} tercatat. WhatsApp Admin dibuka dengan rincian siap kirim. Tekan Kirim di WhatsApp agar admin menerima pesan.`
-        : `Permintaan ${reward.name} tercatat di Demo, tetapi nomor WhatsApp Admin belum dikonfigurasi. Isi NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP agar pesan bisa dibuka otomatis.`,
+        ? `Permintaan ${reward.name} tercatat. WhatsApp Bestie Care dibuka dengan rincian siap kirim. Tekan Kirim di WhatsApp agar tim Bestie Care menerima pesan.`
+        : `Permintaan ${reward.name} tercatat di Demo, tetapi nomor WhatsApp Bestie Care belum dikonfigurasi. Isi NEXT_PUBLIC_RE_SKIN_ADMIN_WHATSAPP agar pesan bisa dibuka otomatis.`,
     );
     setShowNotice(true);
   }
