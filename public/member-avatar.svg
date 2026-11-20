@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe0ee"/><stop offset="1" stop-color="#d8f9df"/></linearGradient>
+  <linearGradient id="hijab" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a34b76"/><stop offset="1" stop-color="#6c315f"/></linearGradient>
+</defs>
+<rect width="120" height="120" rx="60" fill="url(#bg)"/>
+<path d="M17 120c4-28 20-41 43-41s39 13 43 41" fill="#f7f4ec"/>
+<path d="M25 58c0-30 13-47 35-47 22 0 36 17 36 47v27c-10 17-23 25-36 25S34 102 25 85z" fill="url(#hijab)"/>
+<ellipse cx="60" cy="53" rx="22" ry="27" fill="#d99a78"/>
+<path d="M38 50c1-20 9-32 23-32 12 0 22 10 23 28-8-6-16-10-24-10-8 0-15 5-22 14" fill="#38263d"/>
+<path d="M48 55h4m16 0h4" stroke="#392532" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M54 68q6 4 12 0" stroke="#9e4f57" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M27 72c4 22 16 35 33 40 17-5 29-18 33-40v23c-8 15-20 23-33 23S35 110 27 95z" fill="url(#hijab)"/>
+<circle cx="60" cy="60" r="57" fill="none" stroke="#fff" stroke-width="5"/>
+</svg>
