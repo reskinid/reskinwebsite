@@ -2396,3 +2396,276 @@ main,
 .legal-page-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .legal-page-actions .btn{min-height:46px}
 @media(max-width:540px){.legal-page-actions{flex-direction:column}.legal-page-actions .btn{width:100%}}
+
+
+/* ========================================================================== */
+/* RE-SKIN FINAL MOBILE POLISH + BRAND ASSETS                                 */
+/* ========================================================================== */
+
+/* Landing-page brand assets: colored header logo and transparent white footer logo. */
+.header .brand-logo {
+  display: block;
+  width: clamp(142px, 14vw, 170px);
+  height: auto;
+  max-height: 54px;
+  object-fit: contain;
+  margin: 0;
+}
+.footer-brand .brand-logo {
+  display: block;
+  width: 170px;
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+/* Dashboard wordmark uses the black transparent logo supplied for light headers. */
+.dashboard-brand {
+  gap: 12px;
+  min-width: 0;
+}
+.dashboard-brand-logo {
+  display: block;
+  width: 150px;
+  height: auto;
+  max-height: 44px;
+  object-fit: contain;
+  flex: 0 1 auto;
+}
+
+/* Exactly one mobile menu icon is visible for each menu state. */
+.hamburger {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.hamburger .menu-open-icon,
+.hamburger .menu-close-icon {
+  position: absolute;
+  inset: 0;
+  width: 23px;
+  height: 23px;
+  margin: auto;
+  display: none !important;
+}
+.hamburger[aria-expanded="false"] .menu-open-icon {
+  display: block !important;
+}
+.hamburger[aria-expanded="false"] .menu-close-icon {
+  display: none !important;
+}
+.hamburger[aria-expanded="true"] .menu-open-icon {
+  display: none !important;
+}
+.hamburger[aria-expanded="true"] .menu-close-icon {
+  display: block !important;
+}
+@media (max-width: 860px) {
+  .hamburger { display: inline-flex; flex: 0 0 42px; }
+}
+
+/* The mobile quick-start hides its line break; restore a visible word gap. */
+@media (max-width: 860px) {
+  .quick-intro h2 strong { margin-left: .16em; }
+}
+
+/* Center the FAQ plus/minus glyph optically and geometrically in its circle. */
+.faq-list summary:after {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  flex: 0 0 36px !important;
+  box-sizing: border-box;
+  padding: 0 !important;
+  line-height: 1 !important;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 20px !important;
+}
+
+/* Keep notification, home and profile controls in one balanced row on phones. */
+@media (max-width: 480px) {
+  .dashboard-top,
+  .admin-topbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch !important;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+  .dashboard-top > .dashboard-brand {
+    align-self: flex-start;
+    max-width: 100%;
+  }
+  .dashboard-brand-logo {
+    width: 138px;
+    max-height: 40px;
+  }
+  .dashboard-top .admin-top-actions {
+    display: grid !important;
+    grid-template-columns: 44px minmax(86px, .8fr) minmax(0, 1.2fr);
+    align-items: center;
+    justify-content: initial !important;
+    width: 100% !important;
+    min-width: 0;
+    gap: 8px;
+    flex-wrap: nowrap !important;
+  }
+  .dashboard-top .admin-top-actions > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .dashboard-top .admin-top-actions > .live-notification-wrap,
+  .dashboard-top .admin-top-actions > .demo-notification-wrap {
+    justify-self: start;
+  }
+  .dashboard-top .admin-top-actions .demo-notification-panel {
+    left: 0;
+    right: auto;
+    width: min(370px, calc(100vw - 30px));
+  }
+  .dashboard-top .admin-top-actions > .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 7px;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+  .dashboard-top .admin-top-actions > .account-profile-wrap {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .dashboard-top .admin-top-actions .account-profile-trigger {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    gap: 5px;
+    padding: 4px 7px 4px 4px;
+    justify-content: flex-start;
+  }
+  .dashboard-top .admin-top-actions .account-profile-photo {
+    width: 34px;
+    height: 34px;
+  }
+  .dashboard-top .admin-top-actions .account-profile-trigger-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .dashboard-top .admin-top-actions .account-profile-trigger-copy strong {
+    display: block;
+    max-width: 100%;
+    font-size: 9px;
+  }
+  .dashboard-top .admin-top-actions .account-profile-trigger-copy small {
+    font-size: 8px;
+  }
+  .dashboard-top .admin-top-actions .account-profile-chevron {
+    flex: 0 0 8px;
+    margin-left: auto;
+  }
+  .dashboard-top .admin-top-actions .demo-notification-trigger {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+/* V26 — mobile notification panel: visible close control, outside-tap dismissal, and compact layout. */
+.demo-notification-wrap.is-open {
+  z-index: 1200;
+}
+.demo-notification-heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.demo-notification-close {
+  display: grid !important;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border: 1px solid #e5def1 !important;
+  border-radius: 50%;
+  background: #fff !important;
+  color: #51486b !important;
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s;
+}
+.demo-notification-close:hover {
+  border-color: #130B45 !important;
+  background: #f5f1ff !important;
+  color: #130B45 !important;
+}
+.demo-notification-heading-copy {
+  min-width: 0;
+}
+@media (max-width: 680px) {
+  .demo-notification-panel {
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 158px) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    width: min(420px, calc(100vw - 24px)) !important;
+    max-height: min(64dvh, 460px) !important;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+  .demo-notification-heading {
+    align-items: center;
+    gap: 8px;
+    padding: 12px 13px;
+  }
+  .demo-notification-heading strong {
+    font-size: 13px;
+  }
+  .demo-notification-heading small {
+    font-size: 9px;
+  }
+  .demo-notification-heading-actions {
+    gap: 6px;
+  }
+  .demo-notification-heading-actions > button:first-child {
+    font-size: 9px;
+  }
+  .demo-notification-close {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+  .demo-notification-list {
+    max-height: min(38dvh, 270px) !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+@media (max-width: 380px) {
+  .demo-notification-heading-actions > button:first-child {
+    max-width: 88px;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: right;
+  }
+  .demo-notification-filters {
+    flex-wrap: wrap;
+  }
+}

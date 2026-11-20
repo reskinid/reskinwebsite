@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Tukarkan kemasan skincare dan makeup kosong menjadi SKINPoint dan hadiah bersama RE-SKIN.",
   applicationName: "RE-SKIN",
+  icons: { icon: "/favicon.ico", shortcut: "/favicon.ico" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

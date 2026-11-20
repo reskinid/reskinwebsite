@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "@/components/Icons";
 import { DEMO_MEMBER_ID, useDemoEvents, type DemoEvent, type RedemptionStatusEvent } from "@/lib/demo-sync";
 
@@ -155,9 +155,31 @@ function relativeTime(value: string) {
 
 export default function DemoNotificationCenter({ role }: { role: Role }) {
   const events = useDemoEvents();
+  const notificationWrapRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [readIds, setReadIds] = useState<string[]>([]);
   const readKey = `reskin-demo-read-${role}-v1`;
+
+  // Keep demo notifications dismissible on touch screens and keyboards too.
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!notificationWrapRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
 
   useEffect(() => {
     try {
@@ -197,12 +219,13 @@ export default function DemoNotificationCenter({ role }: { role: Role }) {
   }
 
   return (
-    <div className="demo-notification-wrap">
+    <div ref={notificationWrapRef} className={`demo-notification-wrap${open ? " is-open" : ""}`}>
       <button
         className={`demo-notification-trigger${unreadCount ? " has-unread" : ""}`}
         type="button"
         aria-label={`Notifikasi${unreadCount ? `, ${unreadCount} belum dibaca` : ""}`}
         aria-expanded={open}
+        aria-controls={`notification-panel-${role}`}
         onClick={() => setOpen((value) => !value)}
       >
         <Icon name="bell" size={19} />
@@ -210,10 +233,15 @@ export default function DemoNotificationCenter({ role }: { role: Role }) {
       </button>
 
       {open ? (
-        <div className="demo-notification-panel">
+        <div className="demo-notification-panel" id={`notification-panel-${role}`} role="region" aria-label="Panel notifikasi">
           <div className="demo-notification-heading">
-            <div><strong>Notifikasi</strong><small>{unreadCount} belum dibaca</small></div>
-            <button type="button" onClick={markAllRead} disabled={!unreadCount}>Tandai dibaca</button>
+            <div className="demo-notification-heading-copy"><strong>Notifikasi</strong><small>{unreadCount} belum dibaca</small></div>
+            <div className="demo-notification-heading-actions">
+              <button type="button" onClick={markAllRead} disabled={!unreadCount}>Tandai dibaca</button>
+              <button className="demo-notification-close" type="button" onClick={() => setOpen(false)} aria-label="Tutup notifikasi">
+                <Icon name="x" size={17} />
+              </button>
+            </div>
           </div>
           {notifications.length ? (
             <div className="demo-notification-list">

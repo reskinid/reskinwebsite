@@ -8,6 +8,3 @@ build/
 .vercel/
 .DS_Store
 *.log
-
-# TypeScript incremental build cache
-*.tsbuildinfo

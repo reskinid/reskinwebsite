@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Icon } from "@/components/Icons";
@@ -234,9 +235,8 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
     <main className="dashboard-page admin-dashboard-page">
       <div className="dashboard-shell admin-shell">
         <header className="dashboard-top admin-topbar">
-          <Link className="brand admin-brand" href="/" aria-label="Kembali ke beranda RE-SKIN">
-            <span className="brand-mark"><Icon name="recycle" size={20} /></span>
-            <span>RE-SKIN</span>
+          <Link className="brand admin-brand dashboard-brand" href="/" aria-label="Kembali ke beranda RE-SKIN">
+            <Image src="/reskin-logo-black.png" alt="RE-SKIN" width={2048} height={582} className="dashboard-brand-logo" priority />
             <span className="admin-brand-tag">ADMIN</span>
           </Link>
           <div className="admin-top-actions">

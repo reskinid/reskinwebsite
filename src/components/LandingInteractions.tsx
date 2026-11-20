@@ -243,6 +243,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
     function closeMenu() {
       mobileNav?.classList.remove("show");
       hamburger?.setAttribute("aria-expanded", "false");
+      hamburger?.setAttribute("aria-label", "Buka menu navigasi");
     }
 
     function openModal(html: string) {
@@ -812,6 +813,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
     const onHamburgerClick = () => {
       const isOpen = mobileNav?.classList.toggle("show") ?? false;
       hamburger?.setAttribute("aria-expanded", String(isOpen));
+      hamburger?.setAttribute("aria-label", isOpen ? "Tutup menu navigasi" : "Buka menu navigasi");
     };
     hamburger?.addEventListener("click", onHamburgerClick);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Icon, type IconName } from "@/components/Icons";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -90,6 +90,7 @@ export default function LiveNotificationCenter({
   initialNotifications: LiveNotification[];
 }) {
   const router = useRouter();
+  const notificationWrapRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<NotificationFilter>("all");
   const [notifications, setNotifications] = useState(initialNotifications);
@@ -98,6 +99,27 @@ export default function LiveNotificationCenter({
   useEffect(() => {
     setNotifications(initialNotifications);
   }, [initialNotifications]);
+
+  // Close the notification popover when the user taps outside it or presses Escape.
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!notificationWrapRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
 
   useEffect(() => {
     const supabase = createSupabaseBrowserClient();
@@ -198,12 +220,13 @@ export default function LiveNotificationCenter({
   }
 
   return (
-    <div className="demo-notification-wrap live-notification-wrap">
+    <div ref={notificationWrapRef} className={`demo-notification-wrap live-notification-wrap${open ? " is-open" : ""}`}>
       <button
         className={`demo-notification-trigger${unreadCount ? " has-unread" : ""}`}
         type="button"
         aria-label={`Notifikasi${unreadCount ? `, ${unreadCount} belum dibaca` : ""}`}
         aria-expanded={open}
+        aria-controls={`notification-panel-${role}`}
         onClick={() => setOpen((value) => !value)}
       >
         <Icon name="bell" size={19} />
@@ -211,12 +234,17 @@ export default function LiveNotificationCenter({
       </button>
 
       {open ? (
-        <div className="demo-notification-panel">
+        <div className="demo-notification-panel" id={`notification-panel-${role}`} role="region" aria-label="Panel notifikasi">
           <div className="demo-notification-heading">
-            <div><strong>Notifikasi</strong><small>{unreadCount} belum dibaca · {notifications.length} riwayat terbaru</small></div>
-            <button type="button" onClick={markAllRead} disabled={!unreadCount || markingAll}>
-              {markingAll ? "Menyimpan..." : "Tandai semua dibaca"}
-            </button>
+            <div className="demo-notification-heading-copy"><strong>Notifikasi</strong><small>{unreadCount} belum dibaca · {notifications.length} riwayat terbaru</small></div>
+            <div className="demo-notification-heading-actions">
+              <button type="button" onClick={markAllRead} disabled={!unreadCount || markingAll}>
+                {markingAll ? "Menyimpan..." : "Tandai semua dibaca"}
+              </button>
+              <button className="demo-notification-close" type="button" onClick={() => setOpen(false)} aria-label="Tutup notifikasi">
+                <Icon name="x" size={17} />
+              </button>
+            </div>
           </div>
 
           <div className="demo-notification-filters" role="tablist" aria-label="Filter notifikasi">
