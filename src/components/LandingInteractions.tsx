@@ -15,7 +15,7 @@ type LandingSnapshot = {
   points: number;
   avatarStyle: string;
 };
-type IconKey = "arrow-up-right" | "sparkles" | "recycle" | "gift" | "check" | "x" | "mail" | "map-pin" | "whatsapp" | "instagram" | "tiktok";
+type IconKey = "arrow-up-right" | "sparkles" | "recycle" | "gift" | "check" | "x" | "mail" | "map-pin" | "whatsapp" | "instagram" | "tiktok" | "headphones" | "log-in" | "user-plus";
 
 const modalIconPaths: Record<IconKey, string> = {
   "arrow-up-right": '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
@@ -32,6 +32,9 @@ const modalIconPaths: Record<IconKey, string> = {
   whatsapp: '<path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.6a8.5 8.5 0 1 1 16.3-3.9Z"/><path d="M8.5 8.3c.3-.6.6-.6 1-.6h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .4-.2 1-.6 1.3-.4.4-1 .6-1.6.6-.5 0-1.2-.2-2-.6-1.1-.5-2.1-1.3-3-2.2-.8-.9-1.4-1.9-1.7-2.7-.3-.8-.2-1.7.2-2.4Z"/>',
   instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>',
   tiktok: '<path d="M14 3v11.2a4.2 4.2 0 1 1-3.4-4.1"/><path d="M14 3c.5 3.1 2.2 4.9 5 5.3"/>',
+  headphones: '<path d="M3 14v-3a9 9 0 0 1 18 0v3"/><path d="M5 14h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a3 3 0 0 1-3-3v-2a2 2 0 0 1 2-2Z"/><path d="M19 14h-2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a3 3 0 0 0 3-3v-2a2 2 0 0 0-2-2Z"/>',
+  "log-in": '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>',
+  "user-plus": '<path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/>',
 };
 
 function iconHtml(name: IconKey) {
@@ -173,10 +176,10 @@ export default function LandingInteractions({ children }: { children: ReactNode 
 
     function renderGuestAuth() {
       if (desktopAuthHost) {
-        desktopAuthHost.innerHTML = `<button class="simple" type="button" data-action="help" style="border:none;background:transparent">Bestie Care</button><button class="simple" data-action="login" style="border:none;background:transparent">Masuk</button><button class="btn" data-action="signup">Daftar Sekarang <span class="arrow">${iconHtml("arrow-up-right")}</span></button>`;
+        desktopAuthHost.innerHTML = `<button class="simple nav-action-link" type="button" data-action="help" style="border:none;background:transparent">${iconHtml("headphones")}Bestie Care</button><button class="simple nav-action-link" data-action="login" style="border:none;background:transparent">${iconHtml("log-in")}Masuk</button><button class="btn" data-action="signup">${iconHtml("user-plus")}<span>Daftar Sekarang</span></button>`;
       }
       if (mobileAuthHost) {
-        mobileAuthHost.innerHTML = `<button data-action="login">Masuk</button><button class="mobile-cta" data-action="signup">Daftar Sekarang ${iconHtml("arrow-up-right")}</button>`;
+        mobileAuthHost.innerHTML = `<button data-action="login">${iconHtml("log-in")}Masuk</button><button class="mobile-cta" data-action="signup">${iconHtml("user-plus")}<span>Daftar Sekarang</span></button>`;
       }
     }
 
@@ -193,7 +196,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
       const avatar = isAdmin ? "/admin-avatar.svg" : getMemberAvatarPath(snapshot.avatarStyle);
 
       if (desktopAuthHost) {
-        desktopAuthHost.innerHTML = `<button class="simple" type="button" data-action="help" style="border:none;background:transparent">Bestie Care</button><div class="account-profile-wrap landing-account-wrap"><button class="account-profile-trigger" type="button" data-auth-toggle="desktop" aria-expanded="false"><img class="account-profile-photo" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><span class="account-profile-trigger-copy"><strong>${escapeHtml(snapshot.fullName)}</strong><small>${escapeHtml(subLabel)} · ${escapeHtml(pointSummary)}</small></span><span class="account-profile-chevron"></span></button><div class="account-profile-popover landing-account-popover" hidden><div class="account-profile-popover-head"><img class="account-profile-photo account-profile-photo-large" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><div><strong>${escapeHtml(snapshot.fullName)}</strong><span>${escapeHtml(snapshot.email)}</span><small>${iconHtml("sparkles")} ${escapeHtml(subLabel)} · login aktif</small></div></div><div class="account-profile-details landing-account-details"><div><span>${isAdmin ? "Akses" : "Saldo SKINPoint"}</span><strong>${escapeHtml(pointSummary)}</strong></div><div><span>Pintasan cepat</span><strong>${escapeHtml(dashboardLabel)}</strong></div></div><a class="btn landing-account-dashboard" href="${dashboardHref}">Buka ${escapeHtml(dashboardLabel)} ${iconHtml("arrow-up-right")}</a><p class="account-profile-demo-note landing-account-note">${escapeHtml(detailCopy)}</p><button type="button" class="account-profile-logout" data-auth-signout>Keluar dari akun</button></div></div>`;
+        desktopAuthHost.innerHTML = `<button class="simple nav-action-link" type="button" data-action="help" style="border:none;background:transparent">${iconHtml("headphones")}Bestie Care</button><div class="account-profile-wrap landing-account-wrap"><button class="account-profile-trigger" type="button" data-auth-toggle="desktop" aria-expanded="false"><img class="account-profile-photo" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><span class="account-profile-trigger-copy"><strong>${escapeHtml(snapshot.fullName)}</strong><small>${escapeHtml(subLabel)} · ${escapeHtml(pointSummary)}</small></span><span class="account-profile-chevron"></span></button><div class="account-profile-popover landing-account-popover" hidden><div class="account-profile-popover-head"><img class="account-profile-photo account-profile-photo-large" src="${avatar}" alt="Profil ${escapeHtml(snapshot.fullName)}"><div><strong>${escapeHtml(snapshot.fullName)}</strong><span>${escapeHtml(snapshot.email)}</span><small>${iconHtml("sparkles")} ${escapeHtml(subLabel)} · login aktif</small></div></div><div class="account-profile-details landing-account-details"><div><span>${isAdmin ? "Akses" : "Saldo SKINPoint"}</span><strong>${escapeHtml(pointSummary)}</strong></div><div><span>Pintasan cepat</span><strong>${escapeHtml(dashboardLabel)}</strong></div></div><a class="btn landing-account-dashboard" href="${dashboardHref}">Buka ${escapeHtml(dashboardLabel)} ${iconHtml("arrow-up-right")}</a><p class="account-profile-demo-note landing-account-note">${escapeHtml(detailCopy)}</p><button type="button" class="account-profile-logout" data-auth-signout>Keluar dari akun</button></div></div>`;
       }
 
       if (mobileAuthHost) {

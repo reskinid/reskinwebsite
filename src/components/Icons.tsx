@@ -3,6 +3,7 @@ import {
   AlertCircle,
   Bell,
   ChevronDown,
+  CircleHelp,
   ArrowLeft,
   ArrowUpRight,
   CalendarClock,
@@ -11,7 +12,14 @@ import {
   CircleX,
   Clock,
   Gift,
+  FileText,
+  Headphones,
   Heart,
+  House,
+  BookOpen,
+  Workflow,
+  LogIn,
+  UserPlus,
   Info,
   LayoutDashboard,
   Mail,
@@ -46,10 +54,18 @@ export type IconName =
   | "check"
   | "chevron-down"
   | "check-circle"
+  | "circle-help"
   | "clock"
   | "calendar-clock"
   | "dashboard"
   | "gift"
+  | "file-text"
+  | "headphones"
+  | "house"
+  | "book-open"
+  | "workflow"
+  | "log-in"
+  | "user-plus"
   | "heart"
   | "info"
   | "mail"
@@ -84,10 +100,18 @@ const lucideIconMap: Record<LucideName, LucideIcon> = {
   check: Check,
   "chevron-down": ChevronDown,
   "check-circle": CircleCheck,
+  "circle-help": CircleHelp,
   clock: Clock,
   "calendar-clock": CalendarClock,
   dashboard: LayoutDashboard,
   gift: Gift,
+  "file-text": FileText,
+  headphones: Headphones,
+  house: House,
+  "book-open": BookOpen,
+  workflow: Workflow,
+  "log-in": LogIn,
+  "user-plus": UserPlus,
   heart: Heart,
   info: Info,
   mail: Mail,

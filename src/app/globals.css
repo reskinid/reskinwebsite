@@ -2710,3 +2710,198 @@ main,
 .btn-outline:hover .icon-brand {
   color: #ffffff !important;
 }
+
+
+/* V28.8 — navbar iconography, solid signup CTA, and compact two-line closing CTA */
+.nav-links a,
+.nav-actions .simple {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.nav-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.nav-links a:hover,
+.nav-actions .simple:hover {
+  color: #990300 !important;
+}
+.nav-item-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  stroke-width: 1.9;
+}
+.nav-actions .simple {
+  padding: 8px 2px;
+  cursor: pointer;
+}
+.nav-actions .simple .nav-item-icon {
+  width: 16px;
+  height: 16px;
+}
+.nav-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #990300 !important;
+  color: #ffffff !important;
+  border: 1px solid #990300 !important;
+  box-shadow: none !important;
+  transform: none;
+}
+.nav-actions .btn:hover,
+.nav-actions .btn:focus-visible {
+  background: #990300 !important;
+  border-color: #990300 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.nav-actions .btn:hover {
+  transform: translateY(-1px);
+}
+.nav-actions .btn:active {
+  transform: translateY(0);
+}
+.nav-actions .btn .nav-item-icon,
+.nav-actions .btn .arrow .icon-inline {
+  color: #ffffff !important;
+}
+.mobile-nav a,
+.mobile-nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mobile-nav .mobile-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #990300 !important;
+  border: 1px solid #990300 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.mobile-nav .mobile-cta:hover,
+.mobile-nav .mobile-cta:focus-visible {
+  background: #990300 !important;
+  border-color: #990300 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.mobile-nav .mobile-cta .icon-inline {
+  color: #ffffff !important;
+}
+
+.cta-inner h2 {
+  max-width: 1180px !important;
+  margin-inline: auto !important;
+  font-size: clamp(44px, 5.2vw, 92px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.06em !important;
+}
+.cta-title-line {
+  display: block;
+}
+.cta-inner h2 em {
+  font-family: var(--font-accent) !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: var(--coral) !important;
+}
+@media (max-width: 860px) {
+  .nav-links a,
+  .nav-actions .simple {
+    gap: 9px;
+  }
+  .mobile-nav a,
+  .mobile-nav button {
+    min-height: 46px;
+  }
+  .mobile-nav .mobile-cta {
+    min-height: 46px;
+    margin-top: 14px;
+    border-radius: 999px !important;
+  }
+  .cta-inner h2 {
+    max-width: 100% !important;
+    font-size: clamp(38px, 7vw, 62px) !important;
+    line-height: 1.08 !important;
+  }
+}
+@media (max-width: 540px) {
+  .cta-inner h2 {
+    font-size: clamp(34px, 8.5vw, 48px) !important;
+    letter-spacing: -.05em !important;
+  }
+  .cta-title-line {
+    display: block;
+  }
+}
+
+
+/* V28.9 — consistent footer navigation icons and single-line signup CTA */
+.nav-actions .btn,
+.mobile-nav .mobile-cta {
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+.nav-actions .btn {
+  flex: 0 0 auto !important;
+  min-width: max-content !important;
+}
+.nav-actions .btn > span:last-child,
+.mobile-nav .mobile-cta > span:last-child {
+  white-space: nowrap !important;
+}
+.footer-cols .footer-nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 13px !important;
+  padding: 0 !important;
+  border: 0;
+  background: transparent;
+  color: #e5def4;
+  text-align: left;
+  text-decoration: none;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.footer-cols .footer-nav-item:hover,
+.footer-cols .footer-nav-item:focus-visible {
+  color: #ffffff;
+  text-decoration: none;
+}
+.footer-nav-icon {
+  flex: 0 0 29px;
+  width: 29px;
+  height: 29px;
+}
+.footer-nav-icon .icon-inline {
+  width: 15px;
+  height: 15px;
+}
+.footer-nav-item > span:last-child {
+  min-width: 0;
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .footer-cols .footer-nav-item {
+    gap: 8px !important;
+    margin-bottom: 11px !important;
+  }
+  .footer-nav-icon {
+    flex-basis: 27px;
+    width: 27px;
+    height: 27px;
+  }
+}
