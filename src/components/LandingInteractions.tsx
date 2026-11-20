@@ -15,7 +15,7 @@ type LandingSnapshot = {
   points: number;
   avatarStyle: string;
 };
-type IconKey = "arrow-up-right" | "sparkles" | "recycle" | "gift" | "check" | "x";
+type IconKey = "arrow-up-right" | "sparkles" | "recycle" | "gift" | "check" | "x" | "mail" | "map-pin" | "whatsapp" | "instagram" | "tiktok";
 
 const modalIconPaths: Record<IconKey, string> = {
   "arrow-up-right": '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
@@ -27,6 +27,11 @@ const modalIconPaths: Record<IconKey, string> = {
     '<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13"/><path d="M3 12h18"/><path d="M12 8H7.5a2.5 2.5 0 1 1 2.4-3.2L12 8Z"/><path d="M12 8h4.5a2.5 2.5 0 1 0-2.4-3.2L12 8Z"/>',
   check: '<path d="m20 6-11 11-5-5"/>',
   x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  "map-pin": '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+  whatsapp: '<path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.6a8.5 8.5 0 1 1 16.3-3.9Z"/><path d="M8.5 8.3c.3-.6.6-.6 1-.6h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .4-.2 1-.6 1.3-.4.4-1 .6-1.6.6-.5 0-1.2-.2-2-.6-1.1-.5-2.1-1.3-3-2.2-.8-.9-1.4-1.9-1.7-2.7-.3-.8-.2-1.7.2-2.4Z"/>',
+  instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>',
+  tiktok: '<path d="M14 3v11.2a4.2 4.2 0 1 1-3.4-4.1"/><path d="M14 3c.5 3.1 2.2 4.9 5 5.3"/>',
 };
 
 function iconHtml(name: IconKey) {
@@ -713,11 +718,17 @@ export default function LandingInteractions({ children }: { children: ReactNode 
     }
 
     function help() {
-      openModal(`<div class="tag">SAY HELLO</div>
-        <h3 id="modalTitle">Hubungi RE-SKIN.</h3>
-        <p>Dokumen program menyebut TikTok dan Instagram untuk promosi. Namun nomor WhatsApp, akun resmi, serta lokasi kampus belum dicantumkan.</p>
-        <div class="notice">Kontak dan tautan media sosial asli perlu diisi saat konfigurasi. Prototipe ini tidak menggunakan nomor atau akun rekaan.</div>
-        <button class="btn" id="helpClose">Oke, Mengerti</button>`);
+      openModal(`<div class="tag">WE ARE HERE FOR YOU ${iconHtml("sparkles")}</div>
+        <h3 id="modalTitle">Bestie Care.</h3>
+        <p>Butuh bantuan soal pickup, SKINPoint, atau hadiah? Sapa Bestie Care melalui kanal resmi RE-SKIN.</p>
+        <div class="bestie-modal-contacts">
+          <a class="bestie-modal-contact" href="https://wa.me/628138809289" target="_blank" rel="noopener noreferrer"><span class="bestie-contact-icon">${iconHtml("whatsapp")}</span><span><strong>WhatsApp</strong><small>+62 813-8809-289</small></span>${iconHtml("arrow-up-right")}</a>
+          <a class="bestie-modal-contact" href="mailto:rskin6075@gmail.com"><span class="bestie-contact-icon">${iconHtml("mail")}</span><span><strong>Email</strong><small>rskin6075@gmail.com</small></span>${iconHtml("arrow-up-right")}</a>
+          <a class="bestie-modal-contact" href="https://www.instagram.com/reskin.indonesia/" target="_blank" rel="noopener noreferrer"><span class="bestie-contact-icon">${iconHtml("instagram")}</span><span><strong>Instagram</strong><small>@reskin.indonesia</small></span>${iconHtml("arrow-up-right")}</a>
+          <a class="bestie-modal-contact" href="https://www.tiktok.com/@reskin.indonesia" target="_blank" rel="noopener noreferrer"><span class="bestie-contact-icon">${iconHtml("tiktok")}</span><span><strong>TikTok</strong><small>@reskin.indonesia</small></span>${iconHtml("arrow-up-right")}</a>
+          <div class="bestie-modal-contact bestie-modal-address"><span class="bestie-contact-icon">${iconHtml("map-pin")}</span><span><strong>Alamat</strong><small>Telang, Kamal, Kab. Bangkalan, Jawa Timur, Indonesia — 69216</small></span></div>
+        </div>
+        <button class="btn" id="helpClose">Tutup</button>`);
       document.getElementById("helpClose")?.addEventListener("click", closeModal);
     }
 
