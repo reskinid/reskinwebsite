@@ -696,7 +696,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         <p>Kategori giveaway ini tercantum pada rentang <strong>${escapeHtml(points)} SKINPoint</strong> dalam dokumen konsep.</p>
         <div class="notice">Rentang bukan harga pasti untuk setiap hadiah. Stok, produk yang tersedia, dan harga poin final perlu diisi oleh admin sebelum katalog aktif. Klaim hadiah membutuhkan saldo poin dari botol yang lolos verifikasi.</div>
         <button class="btn" id="rewardLogin">${currentUser ? "Cek Saldo" : "Masuk untuk Cek Saldo"} ${iconHtml("arrow-up-right")}</button>`);
-      document.getElementById("rewardLogin")?.addEventListener("click", login);
+      document.getElementById("rewardLogin")?.addEventListener("click", () => login());
     }
 
     function guide() {

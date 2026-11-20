@@ -18,14 +18,14 @@ export async function proxy(request: NextRequest) {
       getAll() {
         return request.cookies.getAll();
       },
-      setAll(cookiesToSet, headers) {
+      setAll(cookiesToSet) {
+        // Update request cookies so downstream Server Components see the refreshed session.
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+        // Recreate the response after mutating the request cookie jar.
         supabaseResponse = NextResponse.next({ request });
+        // Persist refreshed cookies on the response sent to the browser.
         cookiesToSet.forEach(({ name, value, options }) => {
           supabaseResponse.cookies.set(name, value, options);
-        });
-        Object.entries(headers ?? {}).forEach(([name, value]) => {
-          if (value) supabaseResponse.headers.set(name, value);
         });
       },
     },

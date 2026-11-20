@@ -172,7 +172,7 @@ export default async function AdminDashboardPage({ searchParams }: { searchParam
   const completedCount = pickups.filter((pickup) => pickup.status === "completed").length;
   const distributedPoints = Number(pointTotalResult.data ?? 0);
   const filter = ["pending", "confirmed", "completed", "cancelled"].includes(params.status ?? "")
-    ? params.status
+    ? (params.status ?? "all")
     : "all";
   const searchQuery = (params.q ?? "").trim().toLowerCase();
   const selectedMonth = /^([0][1-9]|1[0-2])$/.test(params.month ?? "") ? params.month! : "";
