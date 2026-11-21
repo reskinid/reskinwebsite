@@ -339,15 +339,15 @@ export default function LandingInteractions({ children }: { children: ReactNode 
           ${isConnected ? `<fieldset class="avatar-choice-field hidden" id="signupAvatarField"><legend>Jenis kelamin &amp; tampilan avatar</legend><p>Pilih avatar yang ingin digunakan di Member Area.</p><div class="avatar-choice-grid"><label class="avatar-choice-card"><input type="radio" name="avatarStyle" value="male"><img src="/avatar-male.svg" alt="Avatar laki-laki"><span>Laki-laki</span></label><label class="avatar-choice-card"><input type="radio" name="avatarStyle" value="female_hijab" checked><img src="/member-avatar.svg" alt="Avatar perempuan berhijab"><span>Perempuan berhijab</span></label><label class="avatar-choice-card"><input type="radio" name="avatarStyle" value="female_no_hijab"><img src="/avatar-female-no-hijab.svg" alt="Avatar perempuan tanpa hijab"><span>Perempuan tanpa hijab</span></label></div></fieldset>` : ""}
           <label class="form-field">Email<input name="email" type="email" autocomplete="email" maxlength="120" required placeholder="nama@email.com"></label>
           ${isConnected ? '<label class="form-field" id="passwordField">Password<input name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="Masukkan password"></label><button class="forgot-password-link" id="forgotPasswordBtn" type="button">Lupa password?</button>' : ""}
-          ${isConnected ? '<label class="privacy-consent-row hidden" id="privacyConsentRow"><input id="privacyConsent" type="checkbox"><span>Saya telah membaca dan menyetujui Kebijakan Privasi RE-SKIN.</span></label><div class="privacy-notice signup-verification-notice hidden" id="signupVerificationNotice"><strong>Konfirmasi email untuk mengaktifkan akun</strong><p>Setelah mendaftar, Supabase Auth akan mengirim email konfirmasi ke alamat yang kamu daftarkan. Buka email tersebut dan klik tautan verifikasi sebelum login. Jika belum terlihat, periksa folder Spam. Password dikelola oleh Supabase Auth dan tidak ditampilkan kepada admin RE-SKIN. Data digunakan untuk menjalankan layanan RE-SKIN sesuai kebijakan privasi.</p></div>' : ""}
-          <div class="notice" id="authNotice">${isConnected ? "Masuk menggunakan email dan password yang sudah terdaftar." : "Mode demo: data hanya dipakai selama halaman terbuka, tidak disimpan ke database."}</div>
+          ${isConnected ? '<label class="privacy-consent-row hidden" id="privacyConsentRow"><input id="privacyConsent" type="checkbox"><span>Saya menyetujui <a href="/syarat-ketentuan" target="_blank" rel="noreferrer">Syarat &amp; Ketentuan</a> dan <a href="/kebijakan-privasi" target="_blank" rel="noreferrer">Kebijakan Privasi</a> RE-SKIN.</span></label><div class="privacy-notice signup-verification-notice hidden" id="signupVerificationNotice"><strong>Cek emailmu setelah daftar</strong><p>Kami akan mengirim email konfirmasi otomatis (lewat Supabase Auth). Klik tautan di dalamnya untuk mengaktifkan akun. Belum muncul? Cek folder Spam.</p></div>' : ""}
+          ${!isConnected ? '<div class="notice" id="authNotice">Mode demo: data hanya dipakai selama halaman terbuka, tidak disimpan ke database.</div>' : ""}
           <div class="auth-actions">
             ${isConnected ? '<button class="btn" id="authSubmitBtn" type="submit">Masuk</button>' : '<button class="btn" id="demoLoginBtn" type="button">Buka Dashboard Demo</button>'}
           </div>
+          ${isConnected ? '<p class="auth-legal-footnote signup-auth-footnote hidden" id="signupPrivacyFootnote">Datamu hanya dipakai untuk layanan RE-SKIN, tidak dijual, dan tidak untuk iklan. Passwordmu tidak terlihat oleh admin. <a href="/kebijakan-privasi" target="_blank" rel="noreferrer">Baca Kebijakan Privasi</a></p><p class="auth-legal-footnote login-auth-footnote" id="loginPrivacyFootnote">Datamu aman dan hanya dipakai untuk layanan RE-SKIN. <a href="/kebijakan-privasi" target="_blank" rel="noreferrer">Kebijakan Privasi</a> · <a href="/syarat-ketentuan" target="_blank" rel="noreferrer">Syarat &amp; Ketentuan</a></p>' : ""}
           <p class="auth-message" id="authMessage" aria-live="polite"></p>
         </form>
-        ${isConnected ? `</section>` : ""}
-        ${isConnected ? `<div class="privacy-notice auth-shared-privacy" id="authPrivacyNotice"><strong>Keamanan &amp; privasi Beauty Bestie</strong><p>Autentikasi dan sesi akun dikelola oleh Supabase Auth. Password tidak ditampilkan kepada admin RE-SKIN dan aplikasi tidak menyimpan password sebagai teks biasa. Data profil dan layanan meliputi nama, email, pilihan jenis kelamin/avatar, nomor WhatsApp, alamat pickup, serta riwayat pengajuan, verifikasi, SKINPoint, penukaran hadiah, dan notifikasi. Data digunakan untuk menjalankan layanan RE-SKIN, tidak dijual atau digunakan untuk iklan, dan akses dibatasi sesuai akun serta peran. Tidak ada sistem digital yang 100% bebas risiko. <a href="/kebijakan-privasi" target="_blank" rel="noreferrer">Baca kebijakan privasi</a> · <a href="/syarat-ketentuan" target="_blank" rel="noreferrer">Baca syarat &amp; ketentuan</a>.</p></div>` : ""}`);
+        ${isConnected ? `</section>` : ""}`);
 
       const form = document.getElementById("loginForm") as HTMLFormElement | null;
       const message = document.getElementById("authMessage");
@@ -399,6 +399,8 @@ export default function LandingInteractions({ children }: { children: ReactNode 
       const privacyConsentRow = document.getElementById("privacyConsentRow");
       const forgotPasswordButton = document.getElementById("forgotPasswordBtn") as HTMLButtonElement | null;
       const signupVerificationNotice = document.getElementById("signupVerificationNotice");
+      const signupPrivacyFootnote = document.getElementById("signupPrivacyFootnote");
+      const loginPrivacyFootnote = document.getElementById("loginPrivacyFootnote");
       let authMode: "login" | "signup" = "login";
 
       const setAuthMode = (mode: "login" | "signup") => {
@@ -408,6 +410,8 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         avatarField?.classList.toggle("hidden", !isSignup);
         privacyConsentRow?.classList.toggle("hidden", !isSignup);
         signupVerificationNotice?.classList.toggle("hidden", !isSignup);
+        signupPrivacyFootnote?.classList.toggle("hidden", !isSignup);
+        loginPrivacyFootnote?.classList.toggle("hidden", isSignup);
         forgotPasswordButton?.classList.toggle("hidden", isSignup);
         nameInput.required = isSignup;
         passwordInput.autocomplete = isSignup ? "new-password" : "current-password";
@@ -459,7 +463,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
         const email = String(formData.get("email") ?? "").trim().toLowerCase();
         const password = String(formData.get("password") ?? "");
         if (authMode === "signup" && !privacyConsent?.checked) {
-          if (message) message.textContent = "Silakan setujui pemberitahuan penggunaan data sebelum membuat akun.";
+          if (message) message.textContent = "Silakan setujui Syarat & Ketentuan dan Kebijakan Privasi RE-SKIN sebelum membuat akun.";
           privacyConsent?.focus();
           return;
         }
@@ -488,6 +492,7 @@ export default function LandingInteractions({ children }: { children: ReactNode 
 
         const fullName = nameInput.value.trim();
         const avatarStyle = normalizeAvatarStyle(formData.get("avatarStyle"));
+        const consentAt = new Date().toISOString();
         const { data, error } = await supabase!.auth.signUp({
           email,
           password,
@@ -496,8 +501,10 @@ export default function LandingInteractions({ children }: { children: ReactNode 
               full_name: fullName,
               avatar_style: avatarStyle,
               gender: avatarStyle === "male" ? "male" : "female",
-              privacy_consent_at: new Date().toISOString(),
-              privacy_policy_version: "2026-11-19-v22",
+              terms_consent_at: consentAt,
+              terms_and_privacy_version: "2026-11-20-v1",
+              privacy_consent_at: consentAt,
+              privacy_policy_version: "2026-11-20-v1",
             },
             emailRedirectTo: `${window.location.origin}/auth/callback`,
           },
